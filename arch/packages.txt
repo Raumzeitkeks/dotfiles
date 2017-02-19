@@ -1,0 +1,85 @@
+# BASE SYSTEM
+base
+base-devel
+intel-ucode
+
+# VIDEO
+xf86-video-ati
+mesa-libgl
+mesa-vdpau
+
+# AUDIO
+pulseaudio
+!pulseaudio-alsa
+
+# XORG
+xorg-server
+xorg-server-xephyr
+xorg-xrandr
+
+# DESKTOP ENVIRONMENT
+lightdm
+awesome
+
+# FONTS
+ttf-dejavu
+ttf-inconsolata
+ttf-font-awesome AUR
+adobe-source-code-pro-fonts
+adobe-source-sans-pro-fonts
+adobe-source-serif-pro-fonts
+
+# ZSH
+zsh
+zsh-completions
+zsh-syntax-highlighting
+grml-zsh-config
+powerlevel9k-git OWN
+
+
+################
+# APPLICATIONS #
+################
+
+termite
+
+pacaur-git AUR
+!cower-git AUR
+
+pavucontrol
+
+git
+!tk
+
+openssh
+
+pcmanfm
+!lxsession
+!gvfs
+!ntfs-3g
+!dosfstools
+
+tumbler
+!poppler-glib
+!ffmpegthumbnailer
+!libgsf
+
+xarchiver
+!zip
+!unzip
+!p7zip
+!unrar
+
+visual-studio-code AUR
+
+texstudio
+texlive-core
+texlive-science
+texlive-latexextra
+
+firefox
+
+
+# TODO
+android-file-transfer
+ufw

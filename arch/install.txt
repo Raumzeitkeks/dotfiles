@@ -1,0 +1,208 @@
+# This describes the installation procedure of my Arch Linux system
+# By Calvin Timmer (Raumzeitkeks) <calvin.timmer@mailbox.org> @ Feb 2017
+
+#################
+## BASE SYSTEM ##
+#################
+
+* Boot from live usb
+
+* Set keyboard layout for this session
+  `loadkeys de-latin1`
+* Verify UEFI boot mode by checking the presence of the efivars
+  `ls /sys/firmware/efi/efivars`
+* Check or establish network connectivity
+  (If necessary: `wifi-menu`)
+  `ping 8.8.8.8`
+  `ping google.com`
+* Update system clock
+  `timedatectl set-ntp true`
+
+* Choose the disk
+  `lsblk`
+* Partition the disk
+  `parted /dev/sdx`
+  > `mklabel gpt`
+  > `mkpart ESP fat32 1MiB 513MiB`
+  > `set 1 boot on`
+  > `mkpart primary ext4 513MiB 100%`
+  > `print`
+  > `quit`
+* Format the partitions
+  `mkfs.fat -F32 /dev/sdx1`
+  `mkfs.ext4 /dev/sdx2`
+* Mount the partitions
+  `mount /dev/sdx1 /mnt`
+  `mkdir /mnt/boot`
+  `mount /dev/sdx2 /mnt/boot`
+
+* Select mirrors
+  `curl -o /etc/pacman.d/mirrorlist.all https://www.archlinux.org/mirrorlist/all/`
+  `vim /etc/pacman.d/mirrorlist.all` and uncomment all viable mirrors
+  `rankmirrors /etc/pacman.d/mirrorlist.all > /etc/pacman.d/mirrorlist`
+  `vim /etc/pacman.d/mirrorlist` and reorder mirrors if you would like to (e.g. prefer https)
+  `rm /etc/pacman.d/mirrorlist.all`
+* Install the base system
+  `pacstrap /mnt base base-devel`
+
+* Autogenerate fstab file from current mounts
+  `genfstab -U /mnt > /mnt/etc/fstab`
+
+* Chroot into new environment
+  `arch-chroot /mnt`
+
+* Set console keyboard layout
+  `echo "KEYMAP=de-latin1" > /etc/vconsole.conf`
+* Set timezone and adjust hardware clock
+  `ln -sf /usr/share/zoneinfo/Europe/Berlin /etc/localtime`
+  `hwclock --systohc`
+* Generate locales
+  `sed -i -e 's/^#de_DE/de_DE/ -e 's/^#en_US/en_US/' /etc/locale.gen`
+  `locale-gen`
+  `echo "LANG=en_US.UFT-8" > /etc/locale.conf`
+* Set hostname
+  `echo "glados" > /etc/hostname`
+
+* Optional: If wireless network will be used, install required packages
+  `pacman -S wpa_supplicant` and the necessary firmware/driver packages
+
+* Install the boot loader
+  `bootctl --path=/boot install`
+  `echo "default arch\ntimeout 5\neditor  0" > /boot/loader/loader.conf`
+  `cp /usr/share/systemd/bootctl/arch.conf /boot/loader/entries/arch.conf`
+  `sed -i -e "s/PARTUUID=X*/PARTUUID=$(blkid -s PARTUUID -o value /dev/sdx2)/" -e 's/rootfstype=X*/rootfstype=ext4/'
+* Install Intel microcode
+  `pacman -S intel-ucode`
+  `sed -i -e '/initrd \/initramfs-linux.img/ i initrd \/intel-ucode.img' /boot/loader/entries/arch.conf`
+
+* Set root password
+  `passwd`
+
+* Exit chroot and reboot into new system
+  `exit`
+  `umount  -R /mnt`
+  `reboot`
+
+
+############
+## SYSTEM ##
+############
+
+* Log in as root
+
+* Enable networking
+  Wired networking
+    `networkctl list` and note the device name (e.g. enp3s0)
+    `echo '[Match]\nName=DEVICENAME\n\n[Network]\nDHCP=ipv4' > /etc/systemd/network/50-wired.network`
+    `systemctl enable systemd-networkd`
+    `systemctl enable systemd-resolved`
+    `systemctl start systemd-networkd`
+    `systemctl start systemd-resolved`
+  Wireless networking
+    `wpa_passphrase MYSSID MYPASSPHRASE > /etc/wpa_supplicant/wpa_supplicant-DEVICENAME.conf`
+    `echo '[Match]\nName=DEVICENAME\n\n[Network]\nDHCP=ipv4' > /etc/systemd/network/55-wireless.network`
+  Use wired and wireless together
+    `echo '\n[DHCP]\RouteMetric=10' >> /etc/systemd/network/50-wired.network`
+    `echo '\n[DHCP]\RouteMetric=20' >> /etc/systemd/network/55-wireless.network`
+
+* Update packages
+  `pacman -Syu`
+
+* Create new user
+  `useradd -m -G weel -s /bin/bash calvin`
+  `passwd calvin`
+  `visudo` and uncomment the line '%wheel ALL=(ALL) ALL'
+
+* Install and setup zsh
+  `pacman -S zsh grml-zsh-config zsh-completions zsh-syntax-highlighting`
+  `ln -s /etc/zsh/zshrc /home/calvin/.zshrc`
+  `echo 'source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh' >> /home/calvin/.zshrc.pre`
+  `chown calvin:calvin /home/calvin/.zshrc.pre`
+  (
+    NOTE If there are problems with german umlauts in zsh [possibly only in terminal emulators later on] try the following:
+          1.   i) Set `localectl set-locale LANG=de_DE.UTF-8` and reboot.
+              ii) Test zsh. Umlauts should work now.
+            iii) Reset `localectl set-locale LANG=en_US.UTF-8` and reboot.
+              iv) Test zsh. Umlauts will hopefully remain functional.
+          2. If the above fails, then include the two lines
+            'export LANG=de_DE.UTF-8'
+            'export LANG=en_US.UTF-8'
+            in your .zshrc.pre file.
+  )
+
+* Switch to new user
+  `exit` and log in as new user
+
+* Install git
+  `sudo pacman -S git`
+  `git config --global user.name "Calvin Timmer"`
+  `git config --global user.email "calvin.timmer@mailbox.org"`
+
+* Install AUR helper
+  `git clone https://aur.archlinux.org/cower-git.git`
+  `git clone https://aur.archlinux.org/pacaur-git.git`
+  `cd cower-git`
+  `makepkg -sirc --asdeps`
+  `cd ../pacaur-git`
+  `makepkg -sirc`
+  Remove both directories.
+* Optional: Speed up AUR package creation
+  `sudo sed -i -e "s/^PKGEXT=.*$/PKGEXT='.pkg.tar'/" /etc/makepkg.conf`
+
+* Install video
+  `pacaur -S xf86-video-ati mesa-libgl mesa-vdpau`
+  `pacaur -S --asdeps mesa-libgl mesa-vdpau`
+* Install audio
+  `pacaur -S pulseaudio`
+  `pacaur -S --asdeps pulseaudio-alsa`
+
+* Install X11 server
+  `pacaur -S xorg-server xorg-server-xephyr xorg-xrandr`
+* Set keymap for X11
+  `sudo localectl set-keymap de-latin1`
+
+* Install desktop environment
+  `pacaur -S lightdm awesome`
+  `mkdir -p /home/calvin/.config/awesome/`
+  `cp /etc/xdg/awesome/rc.lua /home/calvin/.config/awesome/`
+* Configure autologin
+  `sudo groupadd -r autologin`
+  `sudo gpasswd -a calvin autologin`
+  `sudo sed -i -e 's/#autologin-user=/autologin-user=calvin/' -e 's/#autologin-session=/autologin-session=awesome/' /etc/lightdm/lightdm.conf`
+
+* Install fonts
+  `pacaur -S [see PACKAGES/FONTS]`
+
+* Install terminal emulator
+  `pacaur -S termite`
+  `sed -i -e 's/^terminal = .*$/terminal = "termite"/' /home/calvin/.config/awesome/rc.lua`
+
+* Start (and enable) graphical session
+  `sudo systemctl start lightdm`
+  If everything is fine (play around a little):
+  `sudo systemctl enable lightdm`
+
+
+############
+## CONFIG ##
+############
+
+* Set monitor configuration
+  `vi 20-monitor.conf` and insert:
+  """
+  Section "Monitor"
+      Identifier  "HDMI-2"
+      Option      "Primary" "true"
+  EndSection
+
+  Section "Monitor"
+      Identifier  "DVI-0"
+      Option      "LeftOf" "HDMI-2"
+  EndSection
+  """
+  `sudo chown root:root 20-monitor.conf`
+  `sudo mv 20-monitor.conf /etc/X11/xorg.conf.d/`
+
+* Install dotfiles
+  `git clone https://github.com/raumzeitkeks/dotfiles`
+  Follow the instructions in README.md
