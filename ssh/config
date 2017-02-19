@@ -1,0 +1,5 @@
+Host github-etit-summary
+  HostName github.com
+  User git
+  IdentityFile ~/.ssh/etit-summary.github.id_rsa
+  IdentitiesOnly yes
