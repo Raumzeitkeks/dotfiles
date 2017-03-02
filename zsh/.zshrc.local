@@ -26,6 +26,7 @@ icons[VCS_GIT_ICON]="\uF1D3 "
 # AwesomeWM config test aliases
 
 alias awmrc-edit='([[ -e ~/.config/awesome/rc-next.lua ]] || cp ~/.config/awesome/rc.lua ~/.config/awesome/rc-next.lua) && code ~/.config/awesome/rc-next.lua'
-alias awmrc-test='Xephyr :5 -screen 1024x768 & DISPLAY=:5 awesome -c ~/.config/awesome/rc-next.lua'
+alias awmrc-xephyr='Xephyr :5 -screen 1024x768 &'
+alias awmrc-run='DISPLAY=:5 awesome -c ~/.config/awesome/rc-next.lua'
 alias awmrc-deploy='cp ~/.config/awesome/rc.lua ~/.config/awesome/rc-old.$(date +"%y%m%d_%H%M%S").lua && cp ~/.config/awesome/rc-next.lua ~/.config/awesome/rc.lua'
 ##########
