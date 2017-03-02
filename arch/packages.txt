@@ -72,13 +72,22 @@ xarchiver
 
 visual-studio-code AUR
 
+qpdfview AUR
+
 texstudio
 texlive-core
 texlive-science
 texlive-latexextra
 
+libreoffice-fresh
+libreoffice-fresh-de
+!libpaper
+
 firefox
 
+thunderbird
+
+gimp
 
 # TODO
 android-file-transfer

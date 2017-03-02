@@ -206,3 +206,18 @@
 * Install dotfiles
   `git clone https://github.com/raumzeitkeks/dotfiles`
   Follow the instructions in README.md
+
+
+##################
+## APPLICATIONS ##
+##################
+
+* Thunderbird
+  - Change UI font size
+    In '~/.thunderbird/[XXXXXXXX].default/chrome/userChrome.css' (create file and folder if necessary) add the lines:
+    '''
+    /* Global UI font */
+    * { font-size: 10pt !important;
+      font-family: Verdana !important;
+    }
+    '''
