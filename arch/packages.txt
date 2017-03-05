@@ -20,6 +20,7 @@ xorg-xrandr
 # DESKTOP ENVIRONMENT
 lightdm
 awesome
+unclutter
 
 # FONTS
 ttf-dejavu
@@ -89,6 +90,8 @@ thunderbird
 
 gimp
 
+dropbox
+
 # TODO
 android-file-transfer
-ufw
+pidgin

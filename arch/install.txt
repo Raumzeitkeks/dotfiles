@@ -147,7 +147,8 @@
   `makepkg -sirc`
   Remove both directories.
 * Optional: Speed up AUR package creation
-  `sudo sed -i -e "s/^PKGEXT=.*$/PKGEXT='.pkg.tar'/" /etc/makepkg.conf`
+  a) No compression: `sudo sed -i -e "s/^PKGEXT=.*$/PKGEXT='.pkg.tar'/" /etc/makepkg.conf`
+  b) Multi-core compression: `sudo sed -i -e "s/^COMPRESSXZ=(xz -c -z -)$/COMPRESSXZ=(xz -c -z - --threads=0)/" /etc/makepkg.conf`
 
 * Install video
   `pacaur -S xf86-video-ati mesa-libgl mesa-vdpau`
