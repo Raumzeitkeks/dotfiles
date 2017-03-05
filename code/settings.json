@@ -7,4 +7,9 @@
     "files.insertFinalNewline": true,
 
     "window.showFullPath": true,
+
+    "editor.dragAndDrop": true,
+
+    "editor.minimap.enabled": true,
+    "editor.minimap.renderCharacters": false,
 }
