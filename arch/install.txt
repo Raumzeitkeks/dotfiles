@@ -158,7 +158,7 @@
   `pacaur -S --asdeps pulseaudio-alsa`
 
 * Install X11 server
-  `pacaur -S xorg-server xorg-server-xephyr xorg-xrandr`
+  `pacaur -S xorg-server xorg-apps xorg-server-xephyr`
 * Set keymap for X11
   `sudo localectl set-keymap de-latin1`
 

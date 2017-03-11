@@ -15,7 +15,7 @@ pulseaudio
 # XORG
 xorg-server
 xorg-server-xephyr
-xorg-xrandr
+xorg-apps
 
 # DESKTOP ENVIRONMENT
 lightdm
