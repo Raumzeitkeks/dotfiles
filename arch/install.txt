@@ -188,22 +188,6 @@
 ## CONFIG ##
 ############
 
-* Set monitor configuration
-  `vi 20-monitor.conf` and insert:
-  """
-  Section "Monitor"
-      Identifier  "HDMI-2"
-      Option      "Primary" "true"
-  EndSection
-
-  Section "Monitor"
-      Identifier  "DVI-0"
-      Option      "LeftOf" "HDMI-2"
-  EndSection
-  """
-  `sudo chown root:root 20-monitor.conf`
-  `sudo mv 20-monitor.conf /etc/X11/xorg.conf.d/`
-
 * Install dotfiles
   `git clone https://github.com/raumzeitkeks/dotfiles`
   Follow the instructions in README.md
