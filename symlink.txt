@@ -1,6 +1,0 @@
-~/.dotfiles/awesome/rc.lua  -->  ~/.config/awesome/rc.lua
-~/.dotfiles/code/settings.json  -->  ~/.config/Code/User/settings.json
-~/.dotfiles/termite/config  -->  ~/.config/termite/config
-~/.dotfiles/ssh/config  -->  ~/.ssh/config
-~/.dotfiles/zsh/.zshrc.pre  -->  ~/.zshrc.pre
-~/.dotfiles/zsh/.zshrc.local  -->  ~/.zshrc.local

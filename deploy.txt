@@ -1,0 +1,24 @@
+# Deployment guide
+
+Deploy all files according to the instructions below.
+
+----------------------------------------------------------------------
+
+# Copy files:
+`sudo cp {file} {newfile}`
+
+~/.dotfiles/X11/20-monitor.conf --> /etc/X11/xorg.conf.d/20-monitor.conf
+
+----------------------------------------------------------------------
+
+# Create symlinks:
+`ln -s {file} {symlink}`
+
+~/.dotfiles/awesome/rc.lua  -->  ~/.config/awesome/rc.lua
+~/.dotfiles/code/settings.json  -->  ~/.config/Code/User/settings.json
+~/.dotfiles/termite/config  -->  ~/.config/termite/config
+~/.dotfiles/ssh/config  -->  ~/.ssh/config
+~/.dotfiles/zsh/.zshrc.pre  -->  ~/.zshrc.pre
+~/.dotfiles/zsh/.zshrc.local  -->  ~/.zshrc.local
+
+----------------------------------------------------------------------

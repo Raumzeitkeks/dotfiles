@@ -190,7 +190,7 @@
 
 * Install dotfiles
   `git clone https://github.com/raumzeitkeks/dotfiles`
-  Follow the instructions in README.md
+  Follow the instructions in 'deploy.txt'
 
 
 ##################
