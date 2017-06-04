@@ -206,3 +206,13 @@
       font-family: Verdana !important;
     }
     '''
+
+* Dropbox
+  - Autostart on login
+    `systemctl --user enable dropbox`
+    `systemctl --user edit dropbox`
+    Add lines
+    '''
+    [Service]
+    Environment=DISPLAY=:0
+    '''
