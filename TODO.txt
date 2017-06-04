@@ -1,0 +1,13 @@
+
+##########
+## TODO ##
+##########
+
+* dotfiles README.md
+
+* Autostart
+  - dropbox
+  - unclutter
+  - Numlock on
+  - pcmanfm -d
+  - ssh-agent -s
