@@ -71,6 +71,13 @@ xarchiver
 !p7zip
 !unrar
 
+spyder3
+python-numpy
+python-scipy
+python-numpy
+python-pandas
+python-matplotlib
+
 visual-studio-code AUR
 
 qpdfview AUR
@@ -91,6 +98,8 @@ thunderbird
 gimp
 
 dropbox
+
+speedcrunch
 
 # TODO
 android-file-transfer
