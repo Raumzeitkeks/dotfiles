@@ -115,7 +115,7 @@
 
 * Install and setup zsh
   `pacman -S zsh grml-zsh-config zsh-completions zsh-syntax-highlighting`
-  `ln -s /etc/zsh/zshrc /home/calvin/.zshrc`
+  `touch /home/calvin/.zshrc`
   `echo 'source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh' >> /home/calvin/.zshrc.pre`
   `chown calvin:calvin /home/calvin/.zshrc.pre`
   (
