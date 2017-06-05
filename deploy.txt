@@ -14,10 +14,10 @@ Deploy all files according to the instructions below.
 # Create symlinks:
 `ln -s {file} {symlink}`
 
-~/.dotfiles/awesome/rc.lua  -->  ~/.config/awesome/rc.lua
-~/.dotfiles/code/settings.json  -->  ~/.config/Code/User/settings.json
-~/.dotfiles/termite/config  -->  ~/.config/termite/config
-~/.dotfiles/ssh/config  -->  ~/.ssh/config
-~/.dotfiles/zsh/.zshrc  -->  ~/.zshrc
+~/dotfiles/awesome/rc.lua  -->  ~/.config/awesome/rc.lua
+~/dotfiles/code/settings.json  -->  ~/.config/Code/User/settings.json
+~/dotfiles/termite/config  -->  ~/.config/termite/config
+~/dotfiles/ssh/config  -->  ~/.ssh/config
+~/dotfiles/zsh/.zshrc  -->  ~/.zshrc
 
 ----------------------------------------------------------------------
