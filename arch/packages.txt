@@ -98,7 +98,10 @@ gimp
 
 dropbox
 
-speedcrunch
+ghex
+
+virtualbox
+!virtualbox-host-modules-arch
 
 # TODO
 android-file-transfer
