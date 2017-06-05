@@ -34,7 +34,6 @@ adobe-source-serif-pro-fonts
 zsh
 zsh-completions
 zsh-syntax-highlighting
-powerlevel9k-git OWN
 
 
 ################
