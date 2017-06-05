@@ -114,7 +114,7 @@
   `visudo` and uncomment the line '%wheel ALL=(ALL) ALL'
 
 * Install and setup zsh
-  `pacman -S zsh grml-zsh-config zsh-completions zsh-syntax-highlighting`
+  `pacman -S zsh zsh-completions zsh-syntax-highlighting`
   `touch /home/calvin/.zshrc`
   `echo 'source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh' >> /home/calvin/.zshrc.pre`
   `chown calvin:calvin /home/calvin/.zshrc.pre`
