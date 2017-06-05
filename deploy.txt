@@ -7,7 +7,9 @@ Deploy all files according to the instructions below.
 # Copy files:
 `sudo cp {file} {newfile}`
 
-~/.dotfiles/X11/20-monitor.conf --> /etc/X11/xorg.conf.d/20-monitor.conf
+~/dotfiles/arch/pacman.conf --> /etc/pacman.conf
+~/dotfiles/arch/makepkg.conf --> /etc/makepkg.conf
+~/dotfiles/X11/20-monitor.conf --> /etc/X11/xorg.conf.d/20-monitor.conf
 
 ----------------------------------------------------------------------
 

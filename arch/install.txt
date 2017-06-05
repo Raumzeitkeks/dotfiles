@@ -138,32 +138,20 @@
   `git config --global user.name "Calvin Timmer"`
   `git config --global user.email "calvin.timmer@mailbox.org"`
 
-* Install AUR helper
-  `git clone https://aur.archlinux.org/cower-git.git`
-  `git clone https://aur.archlinux.org/pacaur-git.git`
-  `cd cower-git`
-  `makepkg -sirc --asdeps`
-  `cd ../pacaur-git`
-  `makepkg -sirc`
-  Remove both directories.
-* Optional: Speed up AUR package creation
-  a) No compression: `sudo sed -i -e "s/^PKGEXT=.*$/PKGEXT='.pkg.tar'/" /etc/makepkg.conf`
-  b) Multi-core compression: `sudo sed -i -e "s/^COMPRESSXZ=(xz -c -z -)$/COMPRESSXZ=(xz -c -z - --threads=0)/" /etc/makepkg.conf`
-
 * Install video
-  `pacaur -S xf86-video-ati mesa-libgl mesa-vdpau`
-  `pacaur -S --asdeps mesa-libgl mesa-vdpau`
+  `sudo pacman -S xf86-video-ati mesa-libgl mesa-vdpau`
+  `sudo pacman -S --asdeps mesa-libgl mesa-vdpau`
 * Install audio
-  `pacaur -S pulseaudio`
-  `pacaur -S --asdeps pulseaudio-alsa`
+  `sudo pacman -S pulseaudio`
+  `sudo pacman -S --asdeps pulseaudio-alsa`
 
 * Install X11 server
-  `pacaur -S xorg-server xorg-apps xorg-server-xephyr`
+  `sudo pacman -S xorg-server xorg-apps xorg-server-xephyr`
 * Set keymap for X11
   `sudo localectl set-keymap de-latin1`
 
 * Install desktop environment
-  `pacaur -S lightdm awesome`
+  `sudo pacman -S lightdm awesome`
   `mkdir -p /home/calvin/.config/awesome/`
   `cp /etc/xdg/awesome/rc.lua /home/calvin/.config/awesome/`
 * Configure autologin
@@ -172,10 +160,10 @@
   `sudo sed -i -e 's/#autologin-user=/autologin-user=calvin/' -e 's/#autologin-session=/autologin-session=awesome/' /etc/lightdm/lightdm.conf`
 
 * Install fonts
-  `pacaur -S [see PACKAGES/FONTS]`
+  `sudo pacman -S [see PACKAGES/FONTS]`
 
 * Install terminal emulator
-  `pacaur -S termite`
+  `sudo pacman -S termite`
   `sed -i -e 's/^terminal = .*$/terminal = "termite"/' /home/calvin/.config/awesome/rc.lua`
 
 * Start (and enable) graphical session
@@ -183,10 +171,12 @@
   If everything is fine (play around a little):
   `sudo systemctl enable lightdm`
 
-
-############
-## CONFIG ##
-############
+* Create custom pacman repo
+  `sudo install -d /var/cache/pacman/aurbuilds -o $USER`
+  `sudo install -d /var/cache/pacman/private -o $USER`
+  `repo-add /var/cache/pacman/aurbuilds/aurbuilds.db.tar`
+  `repo-add /var/cache/pacman/private/private.db.tar`
+  `sudo pacman -Syy`
 
 * Install dotfiles
   `git clone https://github.com/raumzeitkeks/dotfiles`
