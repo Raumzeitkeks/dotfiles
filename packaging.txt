@@ -1,0 +1,13 @@
+# Build and add a package to a custom repository
+1) Prepare folder with PKGBUILD and other necessary files
+   (From AUR: `git clone https://aur.archlinux.org/[pkgname].git`)
+2) `cd [pkgname]`
+3) Review the PKGBUILD and all scripts thoroughly
+4) `LC_ALL=C makepkg -srCL` aka. `LC_ALL=C makepkg --syncdeps --rmdeps --cleanbuild --log`
+5) `mv [pkgname]-[pkgver]-[pkgrel]-[arch].pkg.tar.gz /var/cache/pacman/[aurbuilds|private]/`
+6) `cd /var/cache/pacman/[aurbuilds|private]`
+7) `repo-add [aurbuilds|private].db.tar *`
+8) `sudo pacman -Syy`
+
+# Remove a package from a custom repository
+1) `repo-remove /var/cache/pacman/[aurbuilds|private]/[aurbuilds|private].db.tar [pkgname]`
