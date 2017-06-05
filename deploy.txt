@@ -18,7 +18,6 @@ Deploy all files according to the instructions below.
 ~/.dotfiles/code/settings.json  -->  ~/.config/Code/User/settings.json
 ~/.dotfiles/termite/config  -->  ~/.config/termite/config
 ~/.dotfiles/ssh/config  -->  ~/.ssh/config
-~/.dotfiles/zsh/.zshrc.pre  -->  ~/.zshrc.pre
-~/.dotfiles/zsh/.zshrc.local  -->  ~/.zshrc.local
+~/.dotfiles/zsh/.zshrc  -->  ~/.zshrc
 
 ----------------------------------------------------------------------
