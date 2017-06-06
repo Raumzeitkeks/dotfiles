@@ -116,8 +116,6 @@
 * Install and setup zsh
   `pacman -S zsh zsh-completions zsh-syntax-highlighting`
   `touch /home/calvin/.zshrc`
-  `echo 'source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh' >> /home/calvin/.zshrc.pre`
-  `chown calvin:calvin /home/calvin/.zshrc.pre`
   (
     NOTE If there are problems with german umlauts in zsh [possibly only in terminal emulators later on] try the following:
           1.   i) Set `localectl set-locale LANG=de_DE.UTF-8` and reboot.
