@@ -9,6 +9,7 @@ Deploy all files according to the instructions below.
 
 ~/dotfiles/arch/pacman.conf --> /etc/pacman.conf
 ~/dotfiles/arch/makepkg.conf --> /etc/makepkg.conf
+~/dotfiles/arch/mirrorlist --> /etc/pacman.d/mirrorlist
 ~/dotfiles/X11/20-monitor.conf --> /etc/X11/xorg.conf.d/20-monitor.conf
 
 ----------------------------------------------------------------------

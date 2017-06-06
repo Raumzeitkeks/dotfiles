@@ -36,9 +36,9 @@
   `mkdir /mnt/boot`
   `mount /dev/sdx2 /mnt/boot`
 
-* Select mirrors
+* Select mirrors (will be updated from dotfiles later)
   `curl -o /etc/pacman.d/mirrorlist.all https://www.archlinux.org/mirrorlist/all/`
-  `vim /etc/pacman.d/mirrorlist.all` and uncomment all viable mirrors
+  `vim /etc/pacman.d/mirrorlist.all` and uncomment some mirrors (e.g. vfn-nrw.de, netcologne.de)
   `rankmirrors /etc/pacman.d/mirrorlist.all > /etc/pacman.d/mirrorlist`
   `vim /etc/pacman.d/mirrorlist` and reorder mirrors if you would like to (e.g. prefer https)
   `rm /etc/pacman.d/mirrorlist.all`
