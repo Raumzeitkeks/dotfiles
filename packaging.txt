@@ -6,7 +6,7 @@
 4) `LC_ALL=C makepkg -srCL` aka. `LC_ALL=C makepkg --syncdeps --rmdeps --cleanbuild --log`
 5) `mv [pkgname]-[pkgver]-[pkgrel]-[arch].pkg.tar.gz /var/cache/pacman/[aurbuilds|private]/`
 6) `cd /var/cache/pacman/[aurbuilds|private]`
-7) `repo-add [aurbuilds|private].db.tar *`
+7) `repo-add [aurbuilds|private].db.tar [pkgname]-[pkgver]-[pkgrel]-[arch].pkg.tar.gz`
 8) `sudo pacman -Syy`
 
 # Remove a package from a custom repository
