@@ -80,7 +80,7 @@ menubar.utils.terminal = terminal -- Set the terminal for applications that requ
 -- {{{ Wibar
 
 -- Require pulseaudio widget
-local pulse = require("pulseaudio_widget")
+-- local pulse = require("pulseaudio_widget")
 
 -- Create a wibox for each screen and add it
 local taglist_buttons = awful.util.table.join(
@@ -188,7 +188,7 @@ awful.screen.connect_for_each_screen(function(s)
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
             wibox.widget.systray(),
-            pulse,
+            -- pulse,
             wibox.widget.textclock(),
             s.mylayoutbox,
         },
@@ -300,12 +300,12 @@ globalkeys = awful.util.table.join(
               {description = "lua execute prompt", group = "awesome"}),
     -- Menubar
     awful.key({ superkey }, "p", function() menubar.show() end,
-              {description = "show the menubar", group = "launcher"}),
+              {description = "show the menubar", group = "launcher"})
 
     -- Volume control
-    awful.key({ }, "XF86AudioRaiseVolume", pulse.volume_up),
-    awful.key({ }, "XF86AudioLowerVolume", pulse.volume_down),
-    awful.key({ }, "XF86AudioMute",  pulse.toggle_muted)
+    -- awful.key({ }, "XF86AudioRaiseVolume", pulse.volume_up),
+    -- awful.key({ }, "XF86AudioLowerVolume", pulse.volume_down),
+    -- awful.key({ }, "XF86AudioMute",  pulse.toggle_muted)
 )
 
 clientkeys = awful.util.table.join(
