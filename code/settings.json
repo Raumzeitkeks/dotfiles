@@ -22,4 +22,5 @@
     // ${dirty}: a dirty indicator if the active editor is dirty
     // ${separator}: a conditional separator (" - ") that only shows when surrounded by variables with values
     "window.title": "${dirty}${activeEditorLong}${separator}${rootName}${separator}${appName}",
+    "window.zoomLevel": 0,
 }
