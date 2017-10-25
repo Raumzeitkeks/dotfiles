@@ -41,9 +41,6 @@ zsh-syntax-highlighting
 
 termite
 
-pacaur-git AUR
-!cower-git AUR
-
 pavucontrol
 
 git
@@ -54,8 +51,6 @@ openssh
 pcmanfm
 !lxsession
 !gvfs
-!ntfs-3g
-!dosfstools
 
 tumbler
 !poppler-glib
@@ -68,12 +63,18 @@ xarchiver
 !p7zip
 !unrar
 
+gparted
+!ntfs-3g
+!dosfstools
+
 spyder3
-python-numpy
+python-sympy
 python-scipy
 python-numpy
 python-pandas
 python-matplotlib
+python-pillow
+python-h5py
 
 visual-studio-code AUR
 
@@ -94,13 +95,23 @@ thunderbird
 
 gimp
 
-dropbox
+inkscape
+
+dropbox AUR
+
+
+################
+#    PARKED    #
+################
+
+pdfsam
 
 ghex
 
 virtualbox
 !virtualbox-host-modules-arch
 
-# TODO
 android-file-transfer
+
 pidgin
+hexchat
