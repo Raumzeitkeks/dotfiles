@@ -32,13 +32,13 @@
   `mkfs.fat -F32 /dev/sdx1`
   `mkfs.ext4 /dev/sdx2`
 * Mount the partitions
-  `mount /dev/sdx1 /mnt`
+  `mount /dev/sdx2 /mnt`
   `mkdir /mnt/boot`
-  `mount /dev/sdx2 /mnt/boot`
+  `mount /dev/sdx1 /mnt/boot`
 
 * Select mirrors (will be updated from dotfiles later)
   `curl -o /etc/pacman.d/mirrorlist.all https://www.archlinux.org/mirrorlist/all/`
-  `vim /etc/pacman.d/mirrorlist.all` and uncomment some mirrors (e.g. vfn-nrw.de, netcologne.de)
+  `vim /etc/pacman.d/mirrorlist.all` and uncomment some mirrors
   `rankmirrors /etc/pacman.d/mirrorlist.all > /etc/pacman.d/mirrorlist`
   `vim /etc/pacman.d/mirrorlist` and reorder mirrors if you would like to (e.g. prefer https)
   `rm /etc/pacman.d/mirrorlist.all`
@@ -64,24 +64,26 @@
   `echo "glados" > /etc/hostname`
 
 * Optional: If wireless network will be used, install required packages
-  `pacman -S wpa_supplicant` and the necessary firmware/driver packages
+  `pacman -S wpa_supplicant`
+  Also install other necessary firmware/driver packages
 
 * Install the boot loader
   `bootctl --path=/boot install`
   `echo "default arch\ntimeout 5\neditor  0" > /boot/loader/loader.conf`
   `cp /usr/share/systemd/bootctl/arch.conf /boot/loader/entries/arch.conf`
-  `sed -i -e "s/PARTUUID=X*/PARTUUID=$(blkid -s PARTUUID -o value /dev/sdx2)/" -e 's/rootfstype=X*/rootfstype=ext4/'
+  `sed -i -e "s/PARTUUID=X*/PARTUUID=$(blkid -s PARTUUID -o value /dev/sdx2)/" -e 's/rootfstype=X*/rootfstype=ext4/' /boot/loader/entries/arch.conf`
 * Install Intel microcode
   `pacman -S intel-ucode`
-  `sed -i -e '/initrd \/initramfs-linux.img/ i initrd \/intel-ucode.img' /boot/loader/entries/arch.conf`
+  `sed -i -e "/initrd \/initramfs-linux.img/ i initrd \/intel-ucode.img" /boot/loader/entries/arch.conf`
 
 * Set root password
   `passwd`
 
 * Exit chroot and reboot into new system
   `exit`
-  `umount  -R /mnt`
+  `umount -R /mnt`
   `reboot`
+
 
 
 ############
@@ -90,32 +92,36 @@
 
 * Log in as root
 
-* Enable networking
-  Wired networking
-    `networkctl list` and note the device name (e.g. enp3s0)
-    `echo '[Match]\nName=DEVICENAME\n\n[Network]\nDHCP=ipv4' > /etc/systemd/network/50-wired.network`
-    `systemctl enable systemd-networkd`
-    `systemctl enable systemd-resolved`
+* Set up networking
+    `networkctl list` and note the device name(s) (e.g. enp3s0, wlp5s0)
+  Configure wired networking
+    `echo "[Match]\nName=DEVICENAME\n\n[Network]\nDHCP=ipv4\n\n[DHCP]\RouteMetric=10" > /etc/systemd/network/50-wired.network`
+  Configure wireless networking
+    `wpa_passphrase MYSSID MYPASSPHRASE > /etc/wpa_supplicant/wpa_supplicant-DEVICENAME.conf`
+    `sed -i -e "/#psk=\"/ d" /etc/wpa_supplicant/wpa_supplicant-DEVICENAME.conf`
+    `echo "[Match]\nName=DEVICENAME\n\n[Network]\nDHCP=ipv4\n\n[DHCP]\RouteMetric=20" > /etc/systemd/network/55-wireless.network`
+  Activate networking
     `systemctl start systemd-networkd`
     `systemctl start systemd-resolved`
-  Wireless networking
-    `wpa_passphrase MYSSID MYPASSPHRASE > /etc/wpa_supplicant/wpa_supplicant-DEVICENAME.conf`
-    `echo '[Match]\nName=DEVICENAME\n\n[Network]\nDHCP=ipv4' > /etc/systemd/network/55-wireless.network`
-  Use wired and wireless together
-    `echo '\n[DHCP]\RouteMetric=10' >> /etc/systemd/network/50-wired.network`
-    `echo '\n[DHCP]\RouteMetric=20' >> /etc/systemd/network/55-wireless.network`
+    `systemctl start wpa_supplicant@DEVICENAME`
+    `systemctl enable systemd-networkd`
+    `systemctl enable systemd-resolved`
+    `systemctl enable wpa_supplicant@DEVICENAME`
 
 * Update packages
   `pacman -Syu`
 
 * Create new user
-  `useradd -m -G weel -s /bin/bash calvin`
-  `passwd calvin`
+  `useradd -m -G weel -s /bin/bash USERNAME`
+  `passwd USERNAME`
   `visudo` and uncomment the line '%wheel ALL=(ALL) ALL'
+
+* Switch to new user
+  `exit` and log in as new user
 
 * Install and setup zsh
   `pacman -S zsh zsh-completions zsh-syntax-highlighting`
-  `touch /home/calvin/.zshrc`
+  `echo "plugins=(zsh-completions)\nautoload -U compinit && compinit\nsource /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" > ~/.zshrc`
   (
     NOTE If there are problems with german umlauts in zsh [possibly only in terminal emulators later on] try the following:
           1.   i) Set `localectl set-locale LANG=de_DE.UTF-8` and reboot.
@@ -128,13 +134,10 @@
             in your .zshrc.pre file.
   )
 
-* Switch to new user
-  `exit` and log in as new user
-
 * Install git
   `sudo pacman -S git`
-  `git config --global user.name "Calvin Timmer"`
-  `git config --global user.email "calvin.timmer@mailbox.org"`
+  `git config --global user.name "NAME"`
+  `git config --global user.email "MAIL"`
 
 * Install video
   `sudo pacman -S xf86-video-ati mesa-libgl mesa-vdpau`
