@@ -1,0 +1,29 @@
+# Get device names
+*) `networkctl list`
+
+# Add wireless network
+1) `wpa_passphrase MYSSID MYPASSPHRASE | sudo tee /etc/wpa_supplicant/wpa_supplicant-DEVICENAME.conf`
+2) `sudo sed -i -e "/#psk=\"/ d" /etc/wpa_supplicant/wpa_supplicant-DEVICENAME.conf`
+
+# Configure network adapters
+*) For each device:
+    `echo "\
+      [Match]
+      Name=DEVICENAME
+      [Network]
+      DHCP=ipv4
+      [DHCP]
+      RouteMetric=METRIC
+      " | sudo tee /etc/systemd/network/DEVICENAME.network`
+    where a smaller METRIC is better (e.g. METRIC=10 for wired and METRIC=20 for wireless)
+
+# Start and enable networking
+1) `sudo systemctl enable --now systemd-networkd`
+2) `sudo systemctl enable --now wpa_supplicant@DEVICENAME` for all wireless devices
+3) `sudo systemctl enable --now systemd-resolved`
+
+# Restart networking
+1) `sudo ip link set down DEVICENAME`
+2) `sudo systemctl restart systemd-networkd`
+2) `sudo systemctl restart wpa_supplicant@DEVICENAME` for all wireless devices
+2) `sudo systemctl restart systemd-resolved`

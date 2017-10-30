@@ -1,13 +1,29 @@
-# Build and add a package to a custom repository
+# Create a custom repository
+1) `sudo mkdir -p /var/cache/pacman/REPONAME`
+2) `sudo repo-add /var/cache/pacman/REPONAME.db.tar`
+3) Add repo section to /etc/pacman.conf:
+    [REPONAME]
+    SigLevel = Optional TrustAll
+    Server = file:///var/cache/pacman/REPONAME
+4) `pacman -Syy`
+*) Set `CleanMethod = KeepCurrent KeepInstalled` in section "[opions]" in /etc/pacman.conf
+
+# Configure makepkg
+1) Set `MAKEFLAGS="-j$(nproc)"` in section "Architecture, Compile Flags" in /etc/makepkg.conf
+2) Set `BUILDDIR=/tmp/makepkg` in section "Build Environment" in /etc/makepkg.conf
+3) Set `INTEGRITY_CHECK=(sha256)` in section "Global Package Options" in /etc/makepkg.conf
+4) Set `COMPRESSXZ=(xz -c -z - --threads=0)` in setion "Compression Defaults" in /etc/makepkg.conf
+
+# Build and add/upgrade a package in a custom repository
 1) Prepare folder with PKGBUILD and other necessary files
-   (From AUR: `git clone https://aur.archlinux.org/[pkgname].git`)
-2) `cd [pkgname]`
+   (Clone from AUR by `git clone https://aur.archlinux.org/PKGNAME.git`)
+2) `cd PKGNAME`
 3) Review the PKGBUILD and all scripts thoroughly
-4) `LC_ALL=C makepkg -srCL` aka. `LC_ALL=C makepkg --syncdeps --rmdeps --cleanbuild --log`
-5) `mv [pkgname]-[pkgver]-[pkgrel]-[arch].pkg.tar.gz /var/cache/pacman/[aurbuilds|private]/`
-6) `cd /var/cache/pacman/[aurbuilds|private]`
-7) `repo-add [aurbuilds|private].db.tar [pkgname]-[pkgver]-[pkgrel]-[arch].pkg.tar.gz`
+4) `LC_ALL=C PACKAGER="YOURNAME <YOURMAIL>" makepkg -srCL`
+5) `sudo install PKGNAME-PKGVER-PKGREL-ARCH.pkg.tar.gz /var/cache/pacman/REPONAME`
+6) `cd /var/cache/pacman/REPONAME`
+7) `sudo repo-add REPONAME.db.tar PKGNAME-PKGVER-PKGREL-ARCH.pkg.tar.gz`
 8) `sudo pacman -Syy`
 
 # Remove a package from a custom repository
-1) `repo-remove /var/cache/pacman/[aurbuilds|private]/[aurbuilds|private].db.tar [pkgname]`
+1) `repo-remove /var/cache/pacman/REPONAME.db.tar PKGNAME`

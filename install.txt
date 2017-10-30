@@ -1,5 +1,5 @@
 # This describes the installation procedure of my Arch Linux system
-# By Calvin Timmer (Raumzeitkeks) <calvin.timmer@mailbox.org> @ Feb 2017
+# By Calvin Timmer (Raumzeitkeks) <calvin.timmer@mailbox.org>
 
 #################
 ## BASE SYSTEM ##
@@ -9,17 +9,21 @@
 
 * Set keyboard layout for this session
   `loadkeys de-latin1`
+
 * Verify UEFI boot mode by checking the presence of the efivars
   `ls /sys/firmware/efi/efivars`
+
 * Check or establish network connectivity
   (If necessary: `wifi-menu`)
   `ping 8.8.8.8`
   `ping google.com`
+
 * Update system clock
   `timedatectl set-ntp true`
 
 * Choose the disk
   `lsblk`
+
 * Partition the disk
   `parted /dev/sdx`
   > `mklabel gpt`
@@ -28,9 +32,11 @@
   > `mkpart primary ext4 513MiB 100%`
   > `print`
   > `quit`
+
 * Format the partitions
   `mkfs.fat -F32 /dev/sdx1`
   `mkfs.ext4 /dev/sdx2`
+
 * Mount the partitions
   `mount /dev/sdx2 /mnt`
   `mkdir /mnt/boot`
@@ -42,6 +48,7 @@
   `rankmirrors /etc/pacman.d/mirrorlist.all > /etc/pacman.d/mirrorlist`
   `vim /etc/pacman.d/mirrorlist` and reorder mirrors if you would like to (e.g. prefer https)
   `rm /etc/pacman.d/mirrorlist.all`
+
 * Install the base system
   `pacstrap /mnt base base-devel`
 
@@ -53,25 +60,28 @@
 
 * Set console keyboard layout
   `echo "KEYMAP=de-latin1" > /etc/vconsole.conf`
+
 * Set timezone and adjust hardware clock
   `ln -sf /usr/share/zoneinfo/Europe/Berlin /etc/localtime`
   `hwclock --systohc`
+
 * Generate locales
   `sed -i -e 's/^#de_DE/de_DE/ -e 's/^#en_US/en_US/' /etc/locale.gen`
   `locale-gen`
   `echo "LANG=en_US.UFT-8" > /etc/locale.conf`
+
 * Set hostname
-  `echo "glados" > /etc/hostname`
+  `echo "HOSTNAME" > /etc/hostname`
 
 * Optional: If wireless network will be used, install required packages
-  `pacman -S wpa_supplicant`
-  Also install other necessary firmware/driver packages
+  `pacman -S wpa_supplicant` and necessary firmware/driver packages
 
 * Install the boot loader
   `bootctl --path=/boot install`
-  `echo "default arch\ntimeout 5\neditor  0" > /boot/loader/loader.conf`
+  `echo -e "default arch\ntimeout 5\neditor  0" > /boot/loader/loader.conf`
   `cp /usr/share/systemd/bootctl/arch.conf /boot/loader/entries/arch.conf`
   `sed -i -e "s/PARTUUID=X*/PARTUUID=$(blkid -s PARTUUID -o value /dev/sdx2)/" -e 's/rootfstype=X*/rootfstype=ext4/' /boot/loader/entries/arch.conf`
+
 * Install Intel microcode
   `pacman -S intel-ucode`
   `sed -i -e "/initrd \/initramfs-linux.img/ i initrd \/intel-ucode.img" /boot/loader/entries/arch.conf`
@@ -85,125 +95,91 @@
   `reboot`
 
 
-
 ############
 ## SYSTEM ##
 ############
 
 * Log in as root
 
-* Set up networking
-    `networkctl list` and note the device name(s) (e.g. enp3s0, wlp5s0)
-  Configure wired networking
-    `echo "[Match]\nName=DEVICENAME\n\n[Network]\nDHCP=ipv4\n\n[DHCP]\RouteMetric=10" > /etc/systemd/network/50-wired.network`
-  Configure wireless networking
-    `wpa_passphrase MYSSID MYPASSPHRASE > /etc/wpa_supplicant/wpa_supplicant-DEVICENAME.conf`
-    `sed -i -e "/#psk=\"/ d" /etc/wpa_supplicant/wpa_supplicant-DEVICENAME.conf`
-    `echo "[Match]\nName=DEVICENAME\n\n[Network]\nDHCP=ipv4\n\n[DHCP]\RouteMetric=20" > /etc/systemd/network/55-wireless.network`
-  Activate networking
-    `systemctl start systemd-networkd`
-    `systemctl start systemd-resolved`
-    `systemctl start wpa_supplicant@DEVICENAME`
-    `systemctl enable systemd-networkd`
-    `systemctl enable systemd-resolved`
-    `systemctl enable wpa_supplicant@DEVICENAME`
+* Configure network
+  -> See network.txt
+
+* Configure pacman
+  `sed -i -e 's/^#Color/Color/' /etc/pacman.conf`
+  `sed -i -e 's/^#TotalDownload/TotalDownload/' /etc/pacman.conf`
+
+* Update archlinux-keyring
+  `pacman -Sy archlinux-keyring`
 
 * Update packages
   `pacman -Syu`
 
-* Create new user
-  `useradd -m -G weel -s /bin/bash USERNAME`
-  `passwd USERNAME`
-  `visudo` and uncomment the line '%wheel ALL=(ALL) ALL'
-
-* Switch to new user
-  `exit` and log in as new user
-
-* Install and setup zsh
+* Install zsh
   `pacman -S zsh zsh-completions zsh-syntax-highlighting`
-  `echo "plugins=(zsh-completions)\nautoload -U compinit && compinit\nsource /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" > ~/.zshrc`
-  (
-    NOTE If there are problems with german umlauts in zsh [possibly only in terminal emulators later on] try the following:
-          1.   i) Set `localectl set-locale LANG=de_DE.UTF-8` and reboot.
-              ii) Test zsh. Umlauts should work now.
-            iii) Reset `localectl set-locale LANG=en_US.UTF-8` and reboot.
-              iv) Test zsh. Umlauts will hopefully remain functional.
-          2. If the above fails, then include the two lines
-            'export LANG=de_DE.UTF-8'
-            'export LANG=en_US.UTF-8'
-            in your .zshrc.pre file.
-  )
+
+* Install sway
+  `pacman -S sway rxvt-unicode dmenu`
+  `mkdir -p /etc/environment.d`
+  `echo "XKB_DEFAULT_LAYOUT=de" > /etc/environment.d/xkb-layout-de.conf`
+
+* Enable wayland support in several toolkits
+  `pacman -S qt5-wayland`
+  `mkdir -p /etc/environment.d`
+  `echo "\
+    GDK_BACKEND=wayland
+    CLUTTER_BACKEND=wayland
+    QT_QPA_PLATFORM=wayland
+    QT_WAYLAND_DISABLE_WINDOWDECORATION=\"1\"
+    SDL_VIDEODRIVER=wayland
+    ECORE_EVAS_ENGINE=wayland
+    ELM_ENGINE=wayland
+    ELM_DISPLAY=wl
+    ELM_ACCEL=opengl
+    " > /etc/environment.d/wayland-support.conf`
+
+* Install audio utilities
+  `pacman -S alsa-utils`
 
 * Install git
-  `sudo pacman -S git`
-  `git config --global user.name "NAME"`
-  `git config --global user.email "MAIL"`
-
-* Install video
-  `sudo pacman -S xf86-video-ati mesa-libgl mesa-vdpau`
-  `sudo pacman -S --asdeps mesa-libgl mesa-vdpau`
-* Install audio
-  `sudo pacman -S pulseaudio`
-  `sudo pacman -S --asdeps pulseaudio-alsa`
-
-* Install X11 server
-  `sudo pacman -S xorg-server xorg-apps xorg-server-xephyr`
-* Set keymap for X11
-  `sudo localectl set-keymap de-latin1`
-
-* Install desktop environment
-  `sudo pacman -S lightdm awesome`
-  `mkdir -p /home/calvin/.config/awesome/`
-  `cp /etc/xdg/awesome/rc.lua /home/calvin/.config/awesome/`
-* Configure autologin
-  `sudo groupadd -r autologin`
-  `sudo gpasswd -a calvin autologin`
-  `sudo sed -i -e 's/#autologin-user=/autologin-user=calvin/' -e 's/#autologin-session=/autologin-session=awesome/' /etc/lightdm/lightdm.conf`
+  `pacman -S git`
+  `pacman -S --asdeps tk`
 
 * Install fonts
-  `sudo pacman -S [see PACKAGES/FONTS]`
+  `pacman -S ttf-dejavu ttf-inconsolata adobe-source-{code,sans,serif}-pro-fonts`
 
-* Install terminal emulator
-  `sudo pacman -S termite`
-  `sed -i -e 's/^terminal = .*$/terminal = "termite"/' /home/calvin/.config/awesome/rc.lua`
-
-* Start (and enable) graphical session
-  `sudo systemctl start lightdm`
-  If everything is fine (play around a little):
-  `sudo systemctl enable lightdm`
-
-* Create custom pacman repo
-  `sudo install -d /var/cache/pacman/aurbuilds -o $USER`
-  `sudo install -d /var/cache/pacman/private -o $USER`
-  `repo-add /var/cache/pacman/aurbuilds/aurbuilds.db.tar`
-  `repo-add /var/cache/pacman/private/private.db.tar`
-  `sudo pacman -Syy`
-
-* Install dotfiles
-  `git clone https://github.com/raumzeitkeks/dotfiles`
-  Follow the instructions in 'deploy.txt'
+* Create custom pacman repositories and configure makepkg
+  -> See packaging.txt
 
 
-##################
-## APPLICATIONS ##
-##################
+#################
+## CREATE USER ##
+#################
 
-* Thunderbird
-  - Change UI font size
-    In '~/.thunderbird/[XXXXXXXX].default/chrome/userChrome.css' (create file and folder if necessary) add the lines:
-    '''
-    /* Global UI font */
-    * { font-size: 10pt !important;
-      font-family: Verdana !important;
-    }
-    '''
+* Create new user
+  `useradd -m -G wheel -s /bin/zsh USERNAME`
+  `passwd USERNAME`
 
-* Dropbox
-  - Autostart on login
-    `systemctl --user enable dropbox`
-    `systemctl --user edit dropbox`
-    Add lines
-    '''
-    [Service]
-    Environment=DISPLAY=:0
-    '''
+* Enable sudo usage
+  `visudo` and uncomment the line '%wheel ALL=(ALL) ALL'
+
+* Configure zsh for user
+  `echo -e "plugins=(zsh-completions)\nautoload -U compinit && compinit\nsource /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" > /home/USERNAME/.zshrc`
+
+* Configure sway for user
+  `mkdir -p /home/USERNAME/.config/sway`
+  `cp /etc/sway/config /home/USERNAME/.config/sway/`
+
+* Fix ownership in home directories
+  `chown -R USERNAME:USERNAME /home/USERNAME/`
+
+* Switch user
+  `exit` and log into new user
+
+
+################
+## USER SETUP ##
+################
+
+* Configure git
+  `git config --global user.name "NAME"`
+  `git config --global user.email "MAIL"`

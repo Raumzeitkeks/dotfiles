@@ -1,72 +1,104 @@
-# BASE SYSTEM
+###############
+# BASE SYSTEM #
+###############
+
+# Base system
 base
 base-devel
 intel-ucode
 
-# VIDEO
-xf86-video-ati
-mesa-libgl
-mesa-vdpau
 
-# AUDIO
-pulseaudio
-!pulseaudio-alsa
+##########
+# SYSTEM #
+##########
 
-# XORG
-xorg-server
-xorg-server-xephyr
-xorg-apps
+# Z-shell
+zsh
+zsh-completions
+zsh-syntax-highlighting
 
-# DESKTOP ENVIRONMENT
-lightdm
-awesome
-unclutter
+# Graphics system
+sway
+rxvt-unicode
+dmenu
+qt5-wayland
 
-# FONTS
+# Audio system
+alsa-utils
+
+# Git
+git
+!tk
+
+# Fonts
 ttf-dejavu
 ttf-inconsolata
 adobe-source-code-pro-fonts
 adobe-source-sans-pro-fonts
 adobe-source-serif-pro-fonts
 
-# ZSH
-zsh
-zsh-completions
-zsh-syntax-highlighting
-
 
 ################
 # APPLICATIONS #
 ################
 
-termite
+# Desktop
+i3status
+rofi
 
-pavucontrol
+# System
+trash-cli
+brightnessctl AUR
 
-git
-!tk
+# Terminal
+mate-terminal
+cool-retro-term
 
-openssh
+# File manager
+caja
+ranger
 
-pcmanfm
-!lxsession
-!gvfs
-
-tumbler
-!poppler-glib
-!ffmpegthumbnailer
-!libgsf
-
-xarchiver
-!zip
-!unzip
+# Archiver
+engrampa
 !p7zip
 !unrar
 
-gparted
-!ntfs-3g
-!dosfstools
+# Text editor
+atom
 
+# Browser
+firefox
+
+# Mail
+thunderbird
+
+# Media playback
+atril
+eom
+imv
+mpv
+rhythmbox
+!gst-libav
+!gst-plugins-{base,good,bad,ugly}
+cmus
+!libmad
+
+# Media editing
+gimp
+inkscape
+
+# LaTeX
+texstudio
+texlive-core
+texlive-science
+texlive-latexextra
+
+# Office
+libreoffice-fresh
+libreoffice-fresh-de
+!libpaper
+
+# Python
 spyder3
 python-sympy
 python-scipy
@@ -76,33 +108,13 @@ python-matplotlib
 python-pillow
 python-h5py
 
-visual-studio-code AUR
-
-qpdfview AUR
-
-texstudio
-texlive-core
-texlive-science
-texlive-latexextra
-
-libreoffice-fresh
-libreoffice-fresh-de
-!libpaper
-
-firefox
-
-thunderbird
-
-gimp
-
-inkscape
-
+# Dropbox
 dropbox AUR
 
 
-################
-#    PARKED    #
-################
+##########
+# PARKED #
+##########
 
 pdfsam
 
@@ -115,3 +127,32 @@ android-file-transfer
 
 pidgin
 hexchat
+
+darktable
+
+sk1
+pencil AUR
+
+volumeicon
+
+astroid AUR
+
+
+###############################
+############ SETUP ############
+###############################
+
+* mate-terminal
+  `sudo pacman -S mate-terminal`
+  `sed -i -e 's/^set $term .*$/set $term mate-terminal/' /home/USERNAME/.config/sway/config`
+  Configure manually
+
+* dropbox
+  - Autostart on login
+    `systemctl --user enable dropbox`
+    `systemctl --user edit dropbox`
+    Add lines
+    '''
+    [Service]
+    Environment=DISPLAY=:0
+    '''
