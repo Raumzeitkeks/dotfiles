@@ -1,0 +1,299 @@
+# Sway configuration
+# by Calvin Timmer (Raumzeitkeks) <calvin.timmer@mailbox.org>
+#
+# Read `man 5 sway` for a complete reference.
+
+### Variables
+#
+# Applications:
+#
+    # Terminal emulator
+    set $term mate-terminal
+
+    # Application launcher
+    set $menu rofi -modi "drun,run" -show "drun"
+#
+# Workspaces:
+#
+    set $ws0 0
+    set $ws1 1
+    set $ws2 2
+    set $ws3 3
+    set $ws4 4
+    set $ws5 5
+    set $ws6 6
+    set $ws7 7
+    set $ws8 8
+    set $ws9 9
+#
+# Colors:
+#
+    set $black   #1E2127
+    set $red     #E06C75
+    set $green   #98C379
+    set $yellow  #D19A66
+    set $blue    #61AFEF
+    set $magenta #C678DD
+    set $cyan    #56B6C2
+    set $white   #ABB2BF
+#
+# Keys:
+#
+    # vim-like direction keys
+    set $left h
+    set $down j
+    set $up k
+    set $right l
+
+
+### Output configuration
+#
+# Default wallpaper (more resolutions are available in /usr/share/sway/)
+output * bg /usr/share/sway/Sway_Wallpaper_Blue_1920x1080.png fill
+#
+# Example configuration:
+#
+#   output HDMI-A-1 resolution 1920x1080 position 1920,0
+#
+# You can get the names of your outputs by running: swaymsg -t get_outputs
+
+
+### Input configuration
+#
+# Example configuration:
+#
+#   input "2:14:SynPS/2_Synaptics_TouchPad" {
+#       dwt enabled
+#       tap enabled
+#       natural_scroll enabled
+#       middle_emulation enabled
+#   }
+#
+# You can get the names of your inputs by running: swaymsg -t get_inputs
+# Read `man 5 sway-input` for more information about this section.
+
+
+### Appearance
+#
+# Font:
+#
+    font "Inconsolata 12"
+#
+# Window decoration:
+#
+    client.focused          $green $green $black $cyan $green
+    client.focused_inactive $black $black $green $cyan $black
+    client.unfocused        $black $black $white $cyan $black
+    client.urgent           $red   $black $red   $cyan $black
+
+
+### Status Bar
+#
+# Read `man 5 sway-bar` for more information.
+#
+bar {
+    position top
+
+    status_command i3status
+
+    colors {
+        background $black
+        statusline $white
+        separator  $white
+
+        focused_workspace  $yellow $yellow $black
+        active_workspace   $yellow $black  $white
+        inactive_workspace $black  $black  $white
+        urgent_workspace   $red    $black  $white
+
+        binding_mode       $blue   $blue   $black
+    }
+}
+
+
+### Behaviour
+#
+# Focus:
+#
+    focus_follows_mouse no
+
+
+### Key bindings
+#
+# Basics:
+#
+    # start a terminal
+    bindsym Mod4+Return exec $term
+
+    # kill focused window
+    bindsym Mod4+Shift+Q kill
+
+    # start your launcher
+    bindsym Mod4+d exec $menu
+
+    # drag windows by holding down Mod4 and left mouse button.
+    # resize windows by holding down Mod4 and right mouse button.
+    # works for floating and tiled windows.
+    floating_modifier Mod4 normal
+
+    # reload the configuration file
+    bindsym Mod4+Shift+C reload
+
+    # exit sway (logs you out of your wayland session)
+    bindsym Mod4+Shift+E exit
+#
+# Layout:
+#
+    # set horizontal/vertical split
+    bindsym Mod4+B splith
+    bindsym Mod4+V splitv
+
+    # switch current container between layouts
+    bindsym Mod4+S layout stacking
+    bindsym Mod4+W layout tabbed
+    bindsym Mod4+E layout toggle split
+
+    # toggle fullscreen mode of current window
+    bindsym Mod4+F fullscreen
+
+    # toggle tiling/floating mode of current window
+    bindsym Mod4+Space floating toggle
+#
+# Focus:
+#
+    # focus neighbouring container
+    bindsym Mod4+$left focus left
+    bindsym Mod4+Left focus left
+    bindsym Mod4+$down focus down
+    bindsym Mod4+Down focus down
+    bindsym Mod4+$up focus up
+    bindsym Mod4+Up focus up
+    bindsym Mod4+$right focus right
+    bindsym Mod4+Right focus right
+
+    # focus parent/child container
+    bindsym Mod4+A focus parent
+    bindsym Mod4+Shift+A focus child
+
+    # focus tiling/floating area
+    bindsym Mod4+Shift+space focus mode_toggle
+
+    # switch workspace
+    bindsym Mod4+0 workspace $ws0
+    bindsym Mod4+1 workspace $ws1
+    bindsym Mod4+2 workspace $ws2
+    bindsym Mod4+3 workspace $ws3
+    bindsym Mod4+4 workspace $ws4
+    bindsym Mod4+5 workspace $ws5
+    bindsym Mod4+6 workspace $ws6
+    bindsym Mod4+7 workspace $ws7
+    bindsym Mod4+8 workspace $ws8
+    bindsym Mod4+9 workspace $ws9
+    bindsym Mod4+Shift+$left workspace prev
+    bindsym Mod4+Shift+Left workspace prev
+    bindsym Mod4+Shift+$right workspace next
+    bindsym Mod4+Shift+Right workspace next
+#
+# Move:
+#
+mode "move" {
+    # move container in layout or floating layer
+    bindsym $left move left
+    bindsym Left move left
+    bindsym $down move down
+    bindsym Down move down
+    bindsym $up move up
+    bindsym Up move up
+    bindsym $right move right
+    bindsym Right move right
+
+    # move container to workspace
+    bindsym 0 move container to workspace $ws0; mode "default"
+    bindsym 1 move container to workspace $ws1; mode "default"
+    bindsym 2 move container to workspace $ws2; mode "default"
+    bindsym 3 move container to workspace $ws3; mode "default"
+    bindsym 4 move container to workspace $ws4; mode "default"
+    bindsym 5 move container to workspace $ws5; mode "default"
+    bindsym 6 move container to workspace $ws6; mode "default"
+    bindsym 7 move container to workspace $ws7; mode "default"
+    bindsym 8 move container to workspace $ws8; mode "default"
+    bindsym 9 move container to workspace $ws9; mode "default"
+
+    # move and follow container to workspace
+    bindsym Mod4+0 move container to workspace $ws0; workspace $ws0; mode "default"
+    bindsym Mod4+1 move container to workspace $ws1; workspace $ws1; mode "default"
+    bindsym Mod4+2 move container to workspace $ws2; workspace $ws2; mode "default"
+    bindsym Mod4+3 move container to workspace $ws3; workspace $ws3; mode "default"
+    bindsym Mod4+4 move container to workspace $ws4; workspace $ws4; mode "default"
+    bindsym Mod4+5 move container to workspace $ws5; workspace $ws5; mode "default"
+    bindsym Mod4+6 move container to workspace $ws6; workspace $ws6; mode "default"
+    bindsym Mod4+7 move container to workspace $ws7; workspace $ws7; mode "default"
+    bindsym Mod4+8 move container to workspace $ws8; workspace $ws8; mode "default"
+    bindsym Mod4+9 move container to workspace $ws9; workspace $ws9; mode "default"
+
+    # change mode
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+    bindsym Space mode "resize"
+}
+bindsym Mod4+m mode "move"
+#
+# Resize:
+#
+mode "resize" {
+    bindsym $left resize shrink width 10 px or 10 ppt
+    bindsym Left resize shrink width 10 px or 10 ppt
+    bindsym $down resize grow height 10 px or 10 ppt
+    bindsym Down resize grow height 10 px or 10 ppt
+    bindsym $up resize shrink height 10 px or 10 ppt
+    bindsym Up resize shrink height 10 px or 10 ppt
+    bindsym $right resize grow width 10 px or 10 ppt
+    bindsym Right resize grow width 10 px or 10 ppt
+
+    # change mode
+    bindsym Escape mode "default"
+    bindsym Return mode "default"
+    bindsym Space mode "move"
+}
+bindsym Mod4+r mode "resize"
+#
+# Scratchpad:
+#
+    # move current window to scratchpad
+    bindsym Mod4+Shift+minus move scratchpad
+
+    # show/hide scratchpad window (cycles multiple windows)
+    bindsym Mod4+minus scratchpad show
+#
+# Audio:
+#
+    # volume control
+    bindsym XF86AudioLowerVolume exec amixer set Master 1%-
+    bindsym XF86AudioRaiseVolume exec amixer set Master 1%+
+    bindsym XF86AudioMute exec amixer set Master toggle
+    bindsym XF86AudioMicMute exec amixer set Capture toggle
+#
+# Monitor:
+#
+    # screen brightness
+    bindsym XF86MonBrightnessDown exec brightnessctl s 1%-
+    bindsym XF86MonBrightnessUp exec brightnessctl s 1%+
+
+    #bindsym XF86Display exec ...
+#
+# Network:
+#
+    #bindsym XF86Bluetooth exec ...
+    #bindsym XF86WLAN exec ...
+#
+# Other:
+#
+    bindsym XF86Tools exec $term
+#
+# Lock/Suspend/Shutdown:
+#
+    bindsym Mod4+L exec swaylock -c 333333; exec /bin/sh -c "sleep 1; systemctl suspend"
+    bindsym Control+Alt+Delete exec echo -e "poweroff\nreboot" | rofi -dmenu -no-custom | xargs -I {} systemctl {} > /dev/null
+
+
+include /etc/sway/config.d/*

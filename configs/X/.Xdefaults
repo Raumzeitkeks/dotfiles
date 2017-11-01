@@ -1,0 +1,54 @@
+! font
+URxvt.font: xft:inconsolata:size=12
+
+! colors
+! scheme one-dark from atom
+*.foreground:   #ABB2BF
+*.background:   #1E2127
+*.cursorColor:  #5C6370
+! black
+*.color0:       #1E2127
+*.color8:       #5C6370
+! red
+*.color1:       #E06C75
+*.color9:       #E06C75
+! green
+*.color2:       #98C379
+*.color10:      #98C379
+! yellow
+*.color3:       #D19A66
+*.color11:      #D19A66
+! blue
+*.color4:       #61AFEF
+*.color12:      #61AFEF
+! magenta
+*.color5:       #C678DD
+*.color13:      #C678DD
+! cyan
+*.color6:       #56B6C2
+*.color14:      #56B6C2
+! white
+*.color7:       #ABB2BF
+*.color15:      #FFFFFF
+
+! remove scrollbar
+URxvt.scrollBar: 0
+
+! scrollback buffer
+URxvt.saveLines: 4096
+
+! scrolling behaviour
+! do not scroll with output
+URxvt*scrollTtyOutput: false
+! scroll in relation to buffer (with mouse scroll or Shift+Page Up)
+URxvt*scrollWithBuffer: true
+! scroll back to the bottom on keypress
+URxvt*scrollTtyKeypress: true
+! disable scrollback buffer in secondary screen (e.g. pager)
+URxvt.secondaryScreen: 1
+URxvt.secondaryScroll: 0
+
+! clickable URLs
+URxvt.perl-ext-common: default,matcher
+URxvt.url-launcher: /usr/bin/firefox
+URxvt.matcher.button: 1

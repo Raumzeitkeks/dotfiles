@@ -1,0 +1,59 @@
+# i3status configuration
+# by Calvin Timmer (Raumzeitkeks) <calvin.timmer@mailbox.org>
+#
+# Read `man i3status` for a complete reference.
+
+general {
+        interval = 1
+        colors = true
+        color_good = "#98C379"
+        color_degraded = "#D19A66"
+        color_bad = "#E06C75"
+}
+
+order += "ethernet _first_"
+order += "wireless _first_"
+order += "volume master"
+order += "cpu_usage"
+order += "battery all"
+order += "tztime local"
+
+volume master {
+        format = "Vol: %volume"
+        format_muted = "Vol: mute"
+}
+
+ethernet _first_ {
+        format_up = "Eth: %ip"
+        format_down = "No Eth"
+        color_good = "#56B6C2"
+        color_bad = "#C678DD"
+}
+
+wireless _first_ {
+        format_up = "Wifi: %ip (%essid,%quality)"
+        format_down = "No Wifi"
+        color_good = "#56B6C2"
+        color_bad = "#C678DD"
+}
+
+cpu_usage {
+        format = "CPU: %usage"
+        degraded_threshold = 50
+        max_threshold = 90
+}
+
+battery all {
+        format = "Bat: %percentage (%consumption%status)"
+        integer_battery_capacity = true
+        status_chr = " ⚡"
+        status_bat = ""
+        status_unk = ""
+        status_full = ""
+        threshold_type = percentage
+        low_threshold = 25
+}
+
+tztime local {
+        format = "%Y-%m-%d @ %H:%M"
+}

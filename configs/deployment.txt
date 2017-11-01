@@ -1,0 +1,21 @@
+# Deployment guide
+
+Deploy all files according to the instructions below.
+
+----------------------------------------------------------------------
+
+# copy (`cp {src} {dest}`)
+
+~/dotfiles/configs/pacman/mirrorlist  -->  /etc/pacman.d/mirrorlist
+
+----------------------------------------------------------------------
+
+# symlink (`ln -s {file} {link}`)
+
+~/dotfiles/configs/zsh/.zshrc  -->  ~/.zshrc
+~/dotfiles/configs/X/.Xdefaults  -->  ~/.Xdefaults
+~/dotfiles/configs/sway/config  -->  ~/.config/sway/config
+~/dotfiles/configs/i3status/config  -->  ~/.config/i3status/config
+~/dotfiles/configs/termite/config  -->  ~/.config/termite/config
+
+----------------------------------------------------------------------
