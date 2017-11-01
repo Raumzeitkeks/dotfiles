@@ -8,7 +8,7 @@
 # Applications:
 #
     # Terminal emulator
-    set $term mate-terminal
+    set $term termite
 
     # Application launcher
     set $menu rofi -modi "drun,run" -show "drun"
