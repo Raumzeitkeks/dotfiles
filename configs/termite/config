@@ -17,10 +17,10 @@ dynamic_title = true
 clickable_url = true
 filter_unmatched_urls = true
 
-font = Source Code Pro 9
+font = Inconsolata 11
 
 cursor_blink = system
-cursor_shape = ibeam
+cursor_shape = block
 
 scrollback_lines = 10000
 
