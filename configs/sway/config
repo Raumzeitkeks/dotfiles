@@ -118,26 +118,28 @@ bar {
 #
 # Focus:
 #
+    # dont focus windows on moseover event.
+    # a mouse click into the window will focus it though.
     focus_follows_mouse no
+
+    # drag windows by holding down Mod4 and left mouse button.
+    # resize windows by holding down Mod4 and right mouse button.
+    # works for floating and tiled windows.
+    floating_modifier Mod4 normal
 
 
 ### Key bindings
 #
 # Basics:
 #
+    # start your launcher
+    bindsym Mod4+Return exec $menu
+
     # start a terminal
-    bindsym Mod4+Return exec $term
+    bindsym Mod4+Shift+Return exec $term
 
     # kill focused window
     bindsym Mod4+Shift+Q kill
-
-    # start your launcher
-    bindsym Mod4+d exec $menu
-
-    # drag windows by holding down Mod4 and left mouse button.
-    # resize windows by holding down Mod4 and right mouse button.
-    # works for floating and tiled windows.
-    floating_modifier Mod4 normal
 
     # reload the configuration file
     bindsym Mod4+Shift+C reload
