@@ -51,7 +51,7 @@ trash-cli
 brightnessctl AUR
 
 # Terminal
-mate-terminal
+termite
 cool-retro-term
 
 # File manager
