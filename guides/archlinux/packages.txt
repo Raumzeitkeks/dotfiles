@@ -52,7 +52,6 @@ brightnessctl AUR
 
 # Terminal
 termite
-cool-retro-term
 
 # File manager
 caja
@@ -112,6 +111,7 @@ python-h5py
 
 # Dropbox
 dropbox AUR
+dropbox-cli AUR
 
 
 ##########
@@ -123,6 +123,8 @@ rofi
 pdfsam
 
 ghex
+
+cool-retro-term
 
 virtualbox
 !virtualbox-host-modules-arch
