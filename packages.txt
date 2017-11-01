@@ -56,6 +56,7 @@ cool-retro-term
 
 # File manager
 caja
+!caja-open-terminal
 ranger
 
 # Archiver
@@ -141,11 +142,6 @@ astroid AUR
 ###############################
 ############ SETUP ############
 ###############################
-
-* mate-terminal
-  `sudo pacman -S mate-terminal`
-  `sed -i -e 's/^set $term .*$/set $term mate-terminal/' /home/USERNAME/.config/sway/config`
-  Configure manually
 
 * dropbox
   - Autostart on login
