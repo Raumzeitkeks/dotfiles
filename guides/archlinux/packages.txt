@@ -44,7 +44,7 @@ adobe-source-serif-pro-fonts
 
 # Desktop
 i3status
-rofi
+j4-dmenu-desktop-git AUR
 
 # System
 trash-cli
@@ -117,6 +117,8 @@ dropbox AUR
 ##########
 # PARKED #
 ##########
+
+rofi
 
 pdfsam
 

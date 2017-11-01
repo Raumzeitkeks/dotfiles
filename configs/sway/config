@@ -5,27 +5,6 @@
 
 ### Variables
 #
-# Applications:
-#
-    # Terminal emulator
-    set $term termite
-
-    # Application launcher
-    set $menu rofi -modi "drun,run" -show "drun"
-#
-# Workspaces:
-#
-    set $ws1 1
-    set $ws2 2
-    set $ws3 3
-    set $ws4 4
-    set $ws5 5
-    set $ws6 6
-    set $ws7 7
-    set $ws8 8
-    set $ws9 9
-    set $ws0 0
-#
 # Colors:
 #
     set $black   #1E2127
@@ -44,6 +23,30 @@
     set $down j
     set $up k
     set $right l
+#
+# Applications:
+#
+    # Terminal emulator
+    set $term termite
+
+    # dmenu
+    set $dmenu dmenu -i -l 25 -nb \\$black -nf \\$white -sb \\$magenta -sf \\$black
+
+    # Application launcher
+    set $menu j4-dmenu-desktop --dmenu="$dmenu" --term="$term"
+#
+# Workspaces:
+#
+    set $ws1 1
+    set $ws2 2
+    set $ws3 3
+    set $ws4 4
+    set $ws5 5
+    set $ws6 6
+    set $ws7 7
+    set $ws8 8
+    set $ws9 9
+    set $ws0 0
 
 
 ### Output configuration
@@ -293,7 +296,7 @@ bindsym Mod4+r mode "resize"
 # Lock/Suspend/Shutdown:
 #
     bindsym Mod4+L exec swaylock -c 333333; exec /bin/sh -c "sleep 1; systemctl suspend"
-    bindsym Control+Alt+Delete exec echo -e "poweroff\nreboot" | rofi -dmenu -no-custom | xargs -I {} systemctl {} > /dev/null
+    bindsym Control+Alt+Delete exec echo -e "systemctl poweroff\nsystemctl reboot" | $dmenu | /bin/sh
 
 
 include /etc/sway/config.d/*
