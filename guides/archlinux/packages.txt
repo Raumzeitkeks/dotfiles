@@ -29,6 +29,7 @@ alsa-utils
 # Git
 git
 !tk
+tig
 
 # Fonts
 ttf-dejavu
