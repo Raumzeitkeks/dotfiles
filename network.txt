@@ -23,7 +23,5 @@
 3) `sudo systemctl enable --now systemd-resolved`
 
 # Restart networking
-1) `sudo ip link set down DEVICENAME`
+1) `sudo ip link set DEVICENAME down`
 2) `sudo systemctl restart systemd-networkd`
-2) `sudo systemctl restart wpa_supplicant@DEVICENAME` for all wireless devices
-2) `sudo systemctl restart systemd-resolved`
