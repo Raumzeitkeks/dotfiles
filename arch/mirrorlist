@@ -1,14 +1,11 @@
 ## https
-Server = https://mirror.vfn-nrw.de/archlinux/$repo/os/$arch
 Server = https://mirror.netcologne.de/archlinux/$repo/os/$arch
+Server = https://mirrors.n-ix.net/archlinux/$repo/os/$arch
 
 ## http
-Server = http://mirror.vfn-nrw.de/archlinux/$repo/os/$arch
-Server = http://ftp.hosteurope.de/mirror/ftp.archlinux.org/$repo/os/$arch
-Server = http://mirror.netcologne.de/archlinux/$repo/os/$arch
 Server = http://ftp.gwdg.de/pub/linux/archlinux/$repo/os/$arch
-Server = http://mirrors.n-ix.net/archlinux/$repo/os/$arch
+Server = http://ftp.hosteurope.de/mirror/ftp.archlinux.org/$repo/os/$arch
 
-## kernel.org (slow)
+## kernel.org
 Server = https://mirrors.kernel.org/archlinux/$repo/os/$arch
 Server = http://mirrors.kernel.org/archlinux/$repo/os/$arch
