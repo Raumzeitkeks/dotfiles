@@ -1,10 +1,10 @@
 # Create a custom repository
-1) `sudo mkdir -p /var/cache/pacman/REPONAME`
-2) `sudo repo-add /var/cache/pacman/REPONAME.db.tar`
+1) `sudo mkdir -p /usr/repo/REPONAME`
+2) `sudo repo-add /usr/repo/REPONAME/REPONAME.db.tar`
 3) Add repo section to /etc/pacman.conf:
     [REPONAME]
     SigLevel = Optional TrustAll
-    Server = file:///var/cache/pacman/REPONAME
+    Server = file:///usr/repo/REPONAME
 4) `pacman -Syy`
 *) Set `CleanMethod = KeepCurrent KeepInstalled` in section "[opions]" in /etc/pacman.conf
 
@@ -14,16 +14,19 @@
 3) Set `INTEGRITY_CHECK=(sha256)` in section "Global Package Options" in /etc/makepkg.conf
 4) Set `COMPRESSXZ=(xz -c -z - --threads=0)` in setion "Compression Defaults" in /etc/makepkg.conf
 
-# Build and add/upgrade a package in a custom repository
+# Build a package
 1) Prepare folder with PKGBUILD and other necessary files
    (Clone from AUR by `git clone https://aur.archlinux.org/PKGNAME.git`)
 2) `cd PKGNAME`
 3) Review the PKGBUILD and all scripts thoroughly
 4) `LC_ALL=C PACKAGER="YOURNAME <YOURMAIL>" makepkg -srCL`
-5) `sudo install PKGNAME-PKGVER-PKGREL-ARCH.pkg.tar.gz /var/cache/pacman/REPONAME`
-6) `cd /var/cache/pacman/REPONAME`
-7) `sudo repo-add REPONAME.db.tar PKGNAME-PKGVER-PKGREL-ARCH.pkg.tar.gz`
-8) `sudo pacman -Syy`
+
+# Add/upgrade a package in a custom repository
+1) `sudo install PKGNAME-PKGVER-PKGREL-ARCH.pkg.tar.gz /usr/repo/REPONAME`
+2) `cd /usr/repo/REPONAME`
+3) `sudo repo-add REPONAME.db.tar PKGNAME-PKGVER-PKGREL-ARCH.pkg.tar.gz`
+4) `sudo pacman -Syy`
 
 # Remove a package from a custom repository
-1) `repo-remove /var/cache/pacman/REPONAME.db.tar PKGNAME`
+1) `repo-remove /usr/repo/REPONAME/REPONAME.db.tar PKGNAME`
+
