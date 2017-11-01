@@ -15,7 +15,6 @@
 #
 # Workspaces:
 #
-    set $ws0 0
     set $ws1 1
     set $ws2 2
     set $ws3 3
@@ -25,6 +24,7 @@
     set $ws7 7
     set $ws8 8
     set $ws9 9
+    set $ws0 0
 #
 # Colors:
 #
@@ -179,7 +179,6 @@ bar {
     bindsym Mod4+Shift+space focus mode_toggle
 
     # switch workspace
-    bindsym Mod4+0 workspace $ws0
     bindsym Mod4+1 workspace $ws1
     bindsym Mod4+2 workspace $ws2
     bindsym Mod4+3 workspace $ws3
@@ -189,6 +188,7 @@ bar {
     bindsym Mod4+7 workspace $ws7
     bindsym Mod4+8 workspace $ws8
     bindsym Mod4+9 workspace $ws9
+    bindsym Mod4+0 workspace $ws0
     bindsym Mod4+Shift+$left workspace prev
     bindsym Mod4+Shift+Left workspace prev
     bindsym Mod4+Shift+$right workspace next
@@ -208,7 +208,6 @@ mode "move" {
     bindsym Right move right
 
     # move container to workspace
-    bindsym 0 move container to workspace $ws0; mode "default"
     bindsym 1 move container to workspace $ws1; mode "default"
     bindsym 2 move container to workspace $ws2; mode "default"
     bindsym 3 move container to workspace $ws3; mode "default"
@@ -218,9 +217,9 @@ mode "move" {
     bindsym 7 move container to workspace $ws7; mode "default"
     bindsym 8 move container to workspace $ws8; mode "default"
     bindsym 9 move container to workspace $ws9; mode "default"
+    bindsym 0 move container to workspace $ws0; mode "default"
 
     # move and follow container to workspace
-    bindsym Mod4+0 move container to workspace $ws0; workspace $ws0; mode "default"
     bindsym Mod4+1 move container to workspace $ws1; workspace $ws1; mode "default"
     bindsym Mod4+2 move container to workspace $ws2; workspace $ws2; mode "default"
     bindsym Mod4+3 move container to workspace $ws3; workspace $ws3; mode "default"
@@ -230,6 +229,7 @@ mode "move" {
     bindsym Mod4+7 move container to workspace $ws7; workspace $ws7; mode "default"
     bindsym Mod4+8 move container to workspace $ws8; workspace $ws8; mode "default"
     bindsym Mod4+9 move container to workspace $ws9; workspace $ws9; mode "default"
+    bindsym Mod4+0 move container to workspace $ws0; workspace $ws0; mode "default"
 
     # change mode
     bindsym Return mode "default"
