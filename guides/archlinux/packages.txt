@@ -28,7 +28,6 @@ alsa-utils
 
 # Git
 git
-!tk
 tig
 
 # Fonts
@@ -109,6 +108,7 @@ python-pandas
 python-matplotlib
 python-pillow
 python-h5py
+!tk
 
 # Dropbox
 dropbox AUR
