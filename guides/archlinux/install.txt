@@ -175,6 +175,9 @@
 * Switch user
   `exit` and log into new user
 
+* Verify that sudo works and lock root user
+  `sudo passwd -l root`
+
 
 ################
 ## USER SETUP ##
@@ -183,3 +186,6 @@
 * Configure git
   `git config --global user.name "NAME"`
   `git config --global user.email "MAIL"`
+
+* Deploy dotfiles
+
