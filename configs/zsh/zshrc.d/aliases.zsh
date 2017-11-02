@@ -7,6 +7,11 @@ alias ls="ls $LS_OPTS"
 alias la="ls -a"
 unset LS_OPTS
 
+# less
+LESS_OPTS="-i"
+alias less="less $LESS_OPTS"
+unset LESS_OPTS
+
 # grep
 GREP_OPTS='--color=auto --exclude-dir={.git,.hg,.svn}'
 alias grep="grep $GREP_OPTS"
