@@ -155,5 +155,5 @@ astroid AUR
     Add lines
     '''
     [Service]
-    Environment=DISPLAY=:0
+    Environment=QT_QPA_PLATFORM=xcb
     '''
