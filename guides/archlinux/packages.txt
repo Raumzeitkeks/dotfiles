@@ -23,8 +23,9 @@ rxvt-unicode
 dmenu
 qt5-wayland
 
-# Audio system
-alsa-utils
+# Audio
+pulseaudio
+!pulseaudio-alsa
 
 # Git
 git

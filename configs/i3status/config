@@ -21,6 +21,7 @@ order += "tztime local"
 volume master {
         format = "Vol: %volume"
         format_muted = "Vol: mute"
+        device = "pulse" 
 }
 
 ethernet _first_ {
