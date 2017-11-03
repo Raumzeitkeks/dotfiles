@@ -26,14 +26,20 @@
 #
 # Applications:
 #
-    # Terminal emulator
-    set $term termite
-
     # dmenu
     set $dmenu dmenu -i -l 25 -nb \\$black -nf \\$white -sb \\$magenta -sf \\$black
 
-    # Application launcher
+    # Terminal
+    set $term termite
+
+    # Launcher
     set $menu j4-dmenu-desktop --dmenu="$dmenu" --term="$term"
+
+    # Browser
+    set $browser firefox
+
+    # Mail
+    set $mail thunderbird
 #
 # Workspaces:
 #
@@ -132,11 +138,11 @@ bar {
 #
 # Basics:
 #
-    # start your launcher
-    bindsym Mod4+Return exec $menu
-
-    # start a terminal
+    # start terminal
     bindsym Mod4+Shift+Return exec $term
+
+    # start launcher
+    bindsym Mod4+Return exec $launcher
 
     # kill focused window
     bindsym Mod4+Shift+Q kill
@@ -291,9 +297,10 @@ bindsym Mod4+r mode "resize"
     #bindsym XF86Bluetooth exec ...
     #bindsym XF86WLAN exec ...
 #
-# Other:
+# Applications:
 #
-    bindsym XF86Tools exec $term
+    bindsym XF86HomePage exec $browser
+    bindsym XF86Mail exec $mail
 #
 # Lock/Suspend/Shutdown:
 #
