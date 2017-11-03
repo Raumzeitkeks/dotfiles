@@ -116,10 +116,17 @@
 * Install zsh
   `pacman -S zsh zsh-completions zsh-syntax-highlighting`
 
+* Install git
+  `pacman -S git tig`
+
 * Install sway
   `pacman -S sway rxvt-unicode dmenu`
   `echo "XKB_DEFAULT_LAYOUT=de" >> /etc/environment`
-  `echo "WLC_DRM_DEVICE=cardX" >> /etc/environment` where cardX is the one in /dev/dri where your monitor is attached
+
+* Select graphics card used by sway
+  `lspci -vnnn | grep "VGA controller"` to determine the active graphics card
+  `ls -l /dev/dri/by-path` to determine the card number matching the pci id
+  `echo "WLC_DRM_DEVICE=cardX" >> /etc/environment`
 
 * Enable wayland support in several toolkits
   `pacman -S qt5-wayland`
@@ -139,8 +146,17 @@
 * Install audio utilities
   `pacman -S alsa-utils`
 
-* Install git
-  `pacman -S git tig`
+* Set default audio card
+  `cat /proc/asound/cards` to list available cards
+  `echo "\
+    pcm.!default {
+      type hw
+      card CARDNAME
+    }
+    ctl.!default {
+      type hw
+      card CARDNAME
+    }" >> /etc/asound.conf`
 
 * Install fonts
   `pacman -S ttf-dejavu ttf-inconsolata adobe-source-{code,sans,serif}-pro-fonts`
