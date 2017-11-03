@@ -146,17 +146,9 @@
 * Install audio utilities
   `pacman -S alsa-utils`
 
-* Set default audio card
-  `cat /proc/asound/cards` to list available cards
-  `echo "\
-    pcm.!default {
-      type hw
-      card CARDNAME
-    }
-    ctl.!default {
-      type hw
-      card CARDNAME
-    }" >> /etc/asound.conf`
+* Install audio server
+  `sudo pacman -S pulseaudio`
+  `sudo pacman -S --asdeps pulseaudio-alsa`
 
 * Install fonts
   `pacman -S ttf-dejavu ttf-inconsolata adobe-source-{code,sans,serif}-pro-fonts`
