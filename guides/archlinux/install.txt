@@ -66,9 +66,9 @@
   `hwclock --systohc`
 
 * Generate locales
-  `sed -i -e 's/^#de_DE/de_DE/ -e 's/^#en_US/en_US/' /etc/locale.gen`
+  `sed -i -e "s/^#de_DE/de_DE/" -e "s/^#en_US/en_US/" /etc/locale.gen`
   `locale-gen`
-  `echo "LANG=en_US.UFT-8" > /etc/locale.conf`
+  `echo "LANG=en_US.UTF-8" > /etc/locale.conf`
 
 * Set hostname
   `echo "HOSTNAME" > /etc/hostname`
@@ -80,11 +80,11 @@
   `bootctl --path=/boot install`
   `echo -e "default arch\ntimeout 5\neditor  0" > /boot/loader/loader.conf`
   `cp /usr/share/systemd/bootctl/arch.conf /boot/loader/entries/arch.conf`
-  `sed -i -e "s/PARTUUID=X*/PARTUUID=$(blkid -s PARTUUID -o value /dev/sdx2)/" -e 's/rootfstype=X*/rootfstype=ext4/' /boot/loader/entries/arch.conf`
+  `sed -i -e "s/PARTUUID=X*/PARTUUID=$(blkid -s PARTUUID -o value /dev/sdx2)/" -e "s/rootfstype=X*/rootfstype=ext4/" /boot/loader/entries/arch.conf`
 
 * Install Intel microcode
   `pacman -S intel-ucode`
-  `sed -i -e "/initrd \/initramfs-linux.img/ i initrd \/intel-ucode.img" /boot/loader/entries/arch.conf`
+  `sed -i -e "/initrd  \/initramfs-linux.img/ i initrd  \/intel-ucode.img" /boot/loader/entries/arch.conf`
 
 * Set root password
   `passwd`
@@ -105,8 +105,7 @@
   -> See network.txt
 
 * Configure pacman
-  `sed -i -e 's/^#Color/Color/' /etc/pacman.conf`
-  `sed -i -e 's/^#TotalDownload/TotalDownload/' /etc/pacman.conf`
+  `sed -i -e "s/^#Color/Color/" -e "s/^#TotalDownload/TotalDownload/" /etc/pacman.conf`
 
 * Update archlinux-keyring
   `pacman -Sy archlinux-keyring`
@@ -188,4 +187,3 @@
   `git config --global user.email "MAIL"`
 
 * Deploy dotfiles
-

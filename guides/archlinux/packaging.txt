@@ -6,7 +6,7 @@
     SigLevel = Optional TrustAll
     Server = file:///usr/repo/REPONAME
 4) `pacman -Syy`
-*) Set `CleanMethod = KeepCurrent KeepInstalled` in section "[opions]" in /etc/pacman.conf
+*) Set `CleanMethod = KeepCurrent KeepInstalled` in section "[options]" in /etc/pacman.conf
 
 # Configure makepkg
 1) Set `MAKEFLAGS="-j$(nproc)"` in section "Architecture, Compile Flags" in /etc/makepkg.conf
@@ -29,4 +29,3 @@
 
 # Remove a package from a custom repository
 1) `repo-remove /usr/repo/REPONAME/REPONAME.db.tar PKGNAME`
-
