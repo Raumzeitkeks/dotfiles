@@ -118,14 +118,13 @@
 
 * Install sway
   `pacman -S sway rxvt-unicode dmenu`
-  `mkdir -p /etc/environment.d`
-  `echo "XKB_DEFAULT_LAYOUT=de" > /etc/environment.d/xkb-layout-de.conf`
+  `echo "XKB_DEFAULT_LAYOUT=de" >> /etc/environment`
 
 * Enable wayland support in several toolkits
   `pacman -S qt5-wayland`
-  `mkdir -p /etc/environment.d`
   `echo "\
-    GDK_BACKEND=wayland
+    # Instruct graphics toolkits to use the wayland backend
+    #GDK_BACKEND=wayland
     CLUTTER_BACKEND=wayland
     QT_QPA_PLATFORM=wayland
     QT_WAYLAND_DISABLE_WINDOWDECORATION=\"1\"
@@ -134,7 +133,7 @@
     ELM_ENGINE=wayland
     ELM_DISPLAY=wl
     ELM_ACCEL=opengl
-    " > /etc/environment.d/wayland-support.conf`
+    " >> /etc/environment`
 
 * Install audio utilities
   `pacman -S alsa-utils`
