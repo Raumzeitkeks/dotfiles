@@ -140,8 +140,7 @@
   `pacman -S alsa-utils`
 
 * Install git
-  `pacman -S git`
-  `pacman -S --asdeps tk`
+  `pacman -S git tig`
 
 * Install fonts
   `pacman -S ttf-dejavu ttf-inconsolata adobe-source-{code,sans,serif}-pro-fonts`
