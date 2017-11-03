@@ -119,6 +119,7 @@
 * Install sway
   `pacman -S sway rxvt-unicode dmenu`
   `echo "XKB_DEFAULT_LAYOUT=de" >> /etc/environment`
+  `echo "WLC_DRM_DEVICE=cardX" >> /etc/environment` where cardX is the one in /dev/dri where your monitor is attached
 
 * Enable wayland support in several toolkits
   `pacman -S qt5-wayland`
