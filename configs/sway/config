@@ -16,14 +16,6 @@
     set $cyan    #56B6C2
     set $white   #ABB2BF
 #
-# Keys:
-#
-    # vim-like direction keys
-    set $left h
-    set $down j
-    set $up k
-    set $right l
-#
 # Applications:
 #
     # dmenu
@@ -53,6 +45,14 @@
     set $ws8 8
     set $ws9 9
     set $ws0 0
+#
+# Keys:
+#
+    # vim-like direction keys
+    set $left h
+    set $down j
+    set $up k
+    set $right l
 
 
 ### Output configuration
@@ -304,7 +304,7 @@ bindsym Mod4+r mode "resize"
 #
 # Lock/Suspend/Shutdown:
 #
-    bindsym Mod4+L exec swaylock -c 333333; exec /bin/sh -c "sleep 1; systemctl suspend"
+    bindsym Mod4+Shift+L exec swaylock -c 333333; exec /bin/sh -c "sleep 1; systemctl suspend"
     bindsym Control+Alt+Delete exec echo -e "systemctl poweroff\nsystemctl reboot" | $dmenu | /bin/sh
 
 
