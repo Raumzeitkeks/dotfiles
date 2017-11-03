@@ -25,7 +25,7 @@
     set $term termite
 
     # Launcher
-    set $menu j4-dmenu-desktop --dmenu="$dmenu" --term="$term"
+    set $launcher j4-dmenu-desktop --dmenu="$dmenu" --term="$term"
 
     # Browser
     set $browser firefox
