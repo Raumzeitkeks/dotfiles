@@ -43,7 +43,7 @@ adobe-source-serif-pro-fonts
 ################
 
 # Desktop
-i3status
+!i3status
 j4-dmenu-desktop-git AUR
 
 # System
@@ -80,8 +80,6 @@ mpv
 rhythmbox
 !gst-libav
 !gst-plugins-{base,good,bad,ugly}
-cmus
-!libmad
 
 # Media editing
 gimp
