@@ -78,7 +78,7 @@
 
 * Install the boot loader
   `bootctl --path=/boot install`
-  `echo -e "default arch\ntimeout 5\neditor  0" > /boot/loader/loader.conf`
+  `echo -e "default arch\neditor  0" > /boot/loader/loader.conf`
   `cp /usr/share/systemd/bootctl/arch.conf /boot/loader/entries/arch.conf`
   `sed -i -e "s/PARTUUID=X*/PARTUUID=$(blkid -s PARTUUID -o value /dev/sdx2)/" -e "s/rootfstype=X*/rootfstype=ext4/" /boot/loader/entries/arch.conf`
 
