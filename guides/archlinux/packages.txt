@@ -148,11 +148,8 @@ astroid AUR
 ###############################
 
 * dropbox
+  - Login
+    `dropbox-cli stop`
+    `QT_QPA_PLATFORM=xcb dropbox-cli start`
   - Autostart on login
     `systemctl --user enable dropbox`
-    `systemctl --user edit dropbox`
-    Add lines
-    '''
-    [Service]
-    Environment=QT_QPA_PLATFORM=xcb
-    '''
