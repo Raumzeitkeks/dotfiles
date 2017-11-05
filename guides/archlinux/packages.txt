@@ -112,6 +112,9 @@ python-h5py
 dropbox AUR
 dropbox-cli AUR
 
+# Notes
+simplenote-electron-bin AUR
+
 
 ##########
 # PARKED #
