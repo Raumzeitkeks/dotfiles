@@ -155,6 +155,8 @@ astroid AUR
 ###############################
 
 * cups
+  - Start operation
+    `sudo systemctl enable --now org.cups.cupsd.service`
   - Allow administration
     `sudo gpasswd -a USER sys`
   - Web frontend
