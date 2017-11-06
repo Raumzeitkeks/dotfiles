@@ -86,6 +86,10 @@ rhythmbox
 gimp
 inkscape
 
+# Printing
+cups
+foomatic-db-ppds
+
 # LaTeX
 texstudio
 texlive-core
@@ -149,6 +153,14 @@ astroid AUR
 ###############################
 ############ SETUP ############
 ###############################
+
+* cups
+  - Allow administration
+    `sudo gpasswd -a USER sys`
+  - Web frontend
+    http://localhost:631/
+  - Reach printer connected to AVM FritzBox
+    printer URL: `socket://ROUTERIP:9100`
 
 * dropbox
   - Login

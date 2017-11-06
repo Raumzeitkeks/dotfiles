@@ -153,6 +153,9 @@
 * Install fonts
   `pacman -S ttf-dejavu ttf-inconsolata adobe-source-{code,sans,serif}-pro-fonts`
 
+* Set default paper size
+  `echo "a4" > /etc/papersize
+
 * Create custom pacman repositories and configure makepkg
   -> See packaging.txt
 
