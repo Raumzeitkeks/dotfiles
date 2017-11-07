@@ -89,6 +89,7 @@ inkscape
 # Printing
 cups
 foomatic-db-ppds
+!gtk3-print-backends
 
 # LaTeX
 texstudio
