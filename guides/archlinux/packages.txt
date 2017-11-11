@@ -165,6 +165,10 @@ astroid AUR
   - Reach printer connected to AVM FritzBox
     printer URL: `socket://ROUTERIP:9100`
 
+* libreoffice
+  - Fix user interface
+    Add line `SAL_USE_VCLPLUGIN=gen` or `SAL_USE_VCLPLUGIN=gtk` to /etc/profile.d/libreoffice-fresh.sh
+
 * dropbox
   - Login
     `dropbox-cli stop`
