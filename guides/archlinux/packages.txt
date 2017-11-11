@@ -34,9 +34,8 @@ tig
 # Fonts
 ttf-dejavu
 ttf-inconsolata
-adobe-source-code-pro-fonts
-adobe-source-sans-pro-fonts
-adobe-source-serif-pro-fonts
+ttf-fira-{sans,mono}
+adobe-source-{sans,serif,code}-pro-fonts
 
 
 ################
