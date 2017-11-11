@@ -95,6 +95,7 @@ texstudio
 texlive-core
 texlive-science
 texlive-latexextra
+texlive-pictures
 
 # Office
 libreoffice-fresh
