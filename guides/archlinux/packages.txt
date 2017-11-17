@@ -42,6 +42,9 @@ adobe-source-{sans,serif,code}-pro-fonts
 # APPLICATIONS #
 ################
 
+# File systems
+ntfs-3g
+
 # Desktop
 !i3status
 j4-dmenu-desktop-git AUR
