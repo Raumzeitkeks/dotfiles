@@ -175,6 +175,16 @@ astroid AUR
   - Fix user interface
     Add line `SAL_USE_VCLPLUGIN=gen` or `SAL_USE_VCLPLUGIN=gtk` to /etc/profile.d/libreoffice-fresh.sh
 
+* spyder3
+  - Use xwayland
+    Edit `/usr/share/applications/spyder3.desktop`
+    Append `env QT_QPA_PLATFORM=xcb ` to Exec command
+
+* texstudio
+  - Use xwayland
+    Edit `/usr/share/applications/texstudio.desktop`
+    Append `env QT_QPA_PLATFORM=xcb ` to Exec command
+
 * dropbox
   - Login
     `dropbox-cli stop`
