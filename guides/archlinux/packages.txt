@@ -88,6 +88,9 @@ rhythmbox
 gimp
 inkscape
 
+# Media capture
+youtube-dl
+
 # Printing
 cups
 foomatic-db-ppds
