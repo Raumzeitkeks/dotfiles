@@ -94,7 +94,6 @@ youtube-dl
 # Printing
 cups
 foomatic-db-ppds
-!gtk3-print-backends
 
 # LaTeX
 texstudio
@@ -106,7 +105,6 @@ texlive-pictures
 # Office
 libreoffice-fresh
 libreoffice-fresh-de
-!libpaper
 
 # Python
 spyder3
@@ -122,9 +120,6 @@ python-h5py
 # Dropbox
 dropbox AUR
 dropbox-cli AUR
-
-# Notes
-simplenote-electron-bin AUR
 
 
 ##########
