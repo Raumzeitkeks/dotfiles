@@ -1,6 +1,6 @@
 ## https
-Server = https://mirror.netcologne.de/archlinux/$repo/os/$arch
 Server = https://mirrors.n-ix.net/archlinux/$repo/os/$arch
+Server = https://mirror.netcologne.de/archlinux/$repo/os/$arch
 
 ## http
 Server = http://ftp.gwdg.de/pub/linux/archlinux/$repo/os/$arch
