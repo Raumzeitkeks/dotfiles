@@ -100,7 +100,10 @@ texstudio
 texlive-core
 texlive-science
 texlive-latexextra
+texlive-bibtexextra
+texlive-fontsextra
 texlive-pictures
+biber
 
 # Office
 libreoffice-fresh
