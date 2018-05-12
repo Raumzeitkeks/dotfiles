@@ -78,8 +78,6 @@ thunderbird
 # Media playback
 atril
 eom
-imv
-mpv
 rhythmbox
 !gst-libav
 !gst-plugins-{base,good,bad,ugly}
@@ -87,6 +85,7 @@ rhythmbox
 # Media editing
 gimp
 inkscape
+rawtherapee
 
 # Media capture
 youtube-dl
@@ -118,6 +117,7 @@ python-pandas
 python-matplotlib
 python-pillow
 python-h5py
+python-gyglet
 !tk
 
 # Dropbox
@@ -130,6 +130,9 @@ dropbox-cli AUR
 ##########
 
 rofi
+
+imv
+mpv
 
 pdfsam
 
@@ -144,8 +147,6 @@ android-file-transfer
 
 pidgin
 hexchat
-
-darktable
 
 sk1
 pencil AUR
