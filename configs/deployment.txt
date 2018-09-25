@@ -17,6 +17,6 @@ Deploy all files according to the instructions below.
 ~/dotfiles/configs/sway/config  -->  ~/.config/sway/config
 ~/dotfiles/configs/i3status/config  -->  ~/.config/i3status/config
 ~/dotfiles/configs/termite/config  -->  ~/.config/termite/config
-~/dotfiles/configs/tig/.tigrc --> ~/.tigrc
+~/dotfiles/configs/tig/config --> ~/.config/tig/config
 
 ----------------------------------------------------------------------
