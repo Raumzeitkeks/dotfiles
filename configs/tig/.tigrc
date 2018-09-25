@@ -1,0 +1,2 @@
+# "amend" shortcut in status view
+bind status a !git commit --amend
