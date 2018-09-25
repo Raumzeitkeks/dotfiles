@@ -42,6 +42,9 @@ adobe-source-{sans,serif,code}-pro-fonts
 # APPLICATIONS #
 ################
 
+# Misc
+openssh
+
 # File systems
 ntfs-3g
 
