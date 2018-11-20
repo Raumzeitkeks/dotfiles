@@ -143,15 +143,16 @@
     ELM_ACCEL=opengl
     " >> /etc/environment`
 
-* Install audio utilities
+* Install audio software
   `pacman -S alsa-utils`
-
-* Install audio server
-  `sudo pacman -S pulseaudio`
-  `sudo pacman -S --asdeps pulseaudio-alsa`
+  `pacman -S pulseaudio`
+  `pacman -S --asdeps pulseaudio-alsa`
 
 * Install fonts
   `pacman -S ttf-dejavu ttf-inconsolata adobe-source-{code,sans,serif}-pro-fonts`
+
+* Install additional file systems
+  `pacman -S ntfs-3g exfat-utils`
 
 * Set default paper size
   `echo "a4" > /etc/papersize
@@ -165,7 +166,7 @@
 #################
 
 * Create new user
-  `useradd -m -G wheel -s /bin/zsh USERNAME`
+  `useradd -m -G wheel,video,input -s /bin/zsh USERNAME`
   `passwd USERNAME`
 
 * Enable sudo usage

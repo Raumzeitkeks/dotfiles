@@ -2,7 +2,7 @@
 *) `networkctl list`
 
 # Add wireless network
-1) `wpa_passphrase MYSSID MYPASSPHRASE | sudo tee /etc/wpa_supplicant/wpa_supplicant-DEVICENAME.conf`
+1) `wpa_passphrase MYSSID MYPASSPHRASE | sudo tee -a /etc/wpa_supplicant/wpa_supplicant-DEVICENAME.conf`
 2) `sudo sed -i -e "/#psk=\"/ d" /etc/wpa_supplicant/wpa_supplicant-DEVICENAME.conf`
 
 # Configure network adapters
