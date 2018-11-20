@@ -5,6 +5,7 @@
 # Base system
 base
 base-devel
+pacman-contrib
 intel-ucode
 
 
@@ -17,13 +18,14 @@ zsh
 zsh-completions
 zsh-syntax-highlighting
 
-# Graphics system
+# Graphical system
 sway
 rxvt-unicode
 dmenu
 qt5-wayland
 
 # Audio
+alsa-utils
 pulseaudio
 !pulseaudio-alsa
 
@@ -37,6 +39,10 @@ ttf-inconsolata
 ttf-fira-{sans,mono}
 adobe-source-{sans,serif,code}-pro-fonts
 
+# File systems
+ntfs-3g
+exfat-utils
+
 
 ################
 # APPLICATIONS #
@@ -45,9 +51,6 @@ adobe-source-{sans,serif,code}-pro-fonts
 # Misc
 openssh
 
-# File systems
-ntfs-3g
-
 # Desktop
 !i3status
 j4-dmenu-desktop-git AUR
@@ -55,6 +58,8 @@ j4-dmenu-desktop-git AUR
 # System
 trash-cli
 brightnessctl AUR
+glances
+!python-netifaces
 
 # Terminal
 termite
@@ -63,6 +68,8 @@ termite
 caja
 !caja-open-terminal
 ranger
+pyrenamer AUR
+filezilla
 
 # Archiver
 engrampa
@@ -70,7 +77,8 @@ engrampa
 !unrar
 
 # Text editor
-atom
+howl
+leafpad
 
 # Browser
 firefox
@@ -81,6 +89,7 @@ thunderbird
 # Media playback
 atril
 eom
+vlc
 rhythmbox
 !gst-libav
 !gst-plugins-{base,good,bad,ugly}
@@ -88,7 +97,10 @@ rhythmbox
 # Media editing
 gimp
 inkscape
+darktable
 rawtherapee
+hugin
+luminancehdr
 
 # Media capture
 youtube-dl
@@ -135,6 +147,7 @@ dropbox-cli AUR
 rofi
 
 imv
+vimiv
 mpv
 
 pdfsam
@@ -188,6 +201,9 @@ astroid AUR
     Append `env QT_QPA_PLATFORM=xcb ` to Exec command
 
 * dropbox
+  - Prevent auto-update
+    `rm -rf ~/.dropbox-dist`
+    `install -dm0 ~/.dropbox-dist`
   - Login
     `dropbox-cli stop`
     `QT_QPA_PLATFORM=xcb dropbox-cli start`
