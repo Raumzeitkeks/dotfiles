@@ -38,6 +38,7 @@ ttf-dejavu
 ttf-inconsolata
 ttf-fira-{sans,mono}
 adobe-source-{sans,serif,code}-pro-fonts
+ttf-ms-fonts AUR
 
 # File systems
 ntfs-3g
