@@ -3,6 +3,8 @@
 #
 # Read `man 5 sway` for a complete reference.
 
+input * xkb_numlock enabled
+
 ### Variables
 #
 # Colors:
