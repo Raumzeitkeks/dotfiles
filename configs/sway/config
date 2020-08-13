@@ -306,7 +306,6 @@ bindsym Mod4+r mode "resize"
 #
 # Lock/Suspend/Shutdown:
 #
-    bindsym Mod4+Shift+L exec swaylock -c 333333; exec /bin/sh -c "sleep 1; systemctl suspend"
     bindsym Control+Alt+Delete exec echo -e "systemctl poweroff\nsystemctl reboot" | $dmenu | /bin/sh
 
 
