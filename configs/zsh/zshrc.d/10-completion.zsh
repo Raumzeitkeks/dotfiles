@@ -67,3 +67,4 @@ sched 0 _set-list-colors  # deferred since LS_COLORS might not be available yet
 
 # Don't correct to underscored stuff (usually shell functions)
 CORRECT_IGNORE='_*'
+

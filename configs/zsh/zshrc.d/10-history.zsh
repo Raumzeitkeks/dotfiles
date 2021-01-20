@@ -11,3 +11,4 @@ setopt  HIST_REDUCE_BLANKS
 
 # Use the history from multiple instances simultaneously
 setopt  SHARE_HISTORY
+

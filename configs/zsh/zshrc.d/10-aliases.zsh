@@ -1,10 +1,12 @@
+# cd
 alias ..='cd ..'
 alias ...='cd ../..'
 
 # ls
-LS_OPTS="-l --color=auto"
+LS_OPTS="--color=auto"
 alias ls="ls $LS_OPTS"
-alias la="ls -a"
+alias ll="ls -l $LS_OPTS"
+alias la="ls -la $LS_OPTS"
 unset LS_OPTS
 
 # less
@@ -23,3 +25,4 @@ unset GREP_OPTS
 alias gi="git status"
 alias gg="git gui &"
 alias gk="gitk &"
+

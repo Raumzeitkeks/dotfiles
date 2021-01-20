@@ -1,9 +1,21 @@
 # Use emacs mode
 bindkey -e
 
-# Abbreviations
-# Keycodes taken from terminfo should work for any terminal
-# Modified keyscodes are tested for TERM=xterm-termite
+## Adjust cursor in vim mode
+#function zle-line-init zle-keymap-select {
+#  case $KEYMAP in
+#    vicmd) printf "\e[2 q";; # block cursor
+##    vicmd) printf "\e[4 q";; # underscore cursor
+#    viins|main) printf "\e[6 q";; # beam cursor
+#  esac
+#}
+#zle -N zle-line-init
+#zle -N zle-keymap-select
+
+# Keycodes
+# Keycodes taken from terminfo should work for any terminal.
+# Modified keycodes from below are tested for termite and kitty.
+# Test keycodes for your terminal by typing Ctrl-v followed by the keys in question.
 typeset -A key
 key=(
 	Home        "${terminfo[khome]}"
@@ -40,6 +52,7 @@ key=(
 	BackTab     "${terminfo[kcbt]}"
 )
 
+
 # Functions
 function _prepend-sudo {
   if [[ $BUFFER != "sudo "* ]]; then
@@ -74,4 +87,5 @@ bindkey -M menuselect ${key[BackTab]}  reverse-menu-complete
 
 # Search
 bindkey '^r' history-incremental-pattern-search-backward
-bindkey '^s' history-incremental-pattern-search-forward
+bindkey '^f' history-incremental-pattern-search-forward
+
