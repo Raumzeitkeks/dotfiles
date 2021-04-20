@@ -1,3 +1,3 @@
 [alias]
   sync = "!git fetch origin $1:$1"
-  rebase-interactive = "rebase --interactive --autosquash --rebase-merges"
+  rebase-interactive = "rebase --interactive --rebase-merges"
