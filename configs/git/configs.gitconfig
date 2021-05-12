@@ -38,5 +38,5 @@
   ff = only
 
 [push]
-  default = nothing
+  default = current
   recurseSubmodules = check
