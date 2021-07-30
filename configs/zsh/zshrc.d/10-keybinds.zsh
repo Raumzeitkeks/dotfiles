@@ -89,3 +89,6 @@ bindkey -M menuselect ${key[BackTab]}  reverse-menu-complete
 bindkey '^r' history-incremental-pattern-search-backward
 bindkey '^f' history-incremental-pattern-search-forward
 
+
+# Do not consider punctuation characters to be part of a word
+WORDCHARS=''
