@@ -1,2 +1,7 @@
+# tig configuration
+# by Calvin Ruocco (Raumzeitkeks) <calvin@ruoc.co>
+#
+# Read `man 5 tigrc` for a complete reference.
+
 # "amend" shortcut in status view
 bind status a !?git commit --amend

@@ -8,13 +8,12 @@ _custom_zsh_config_base="${${(%):-%x}:A:h}"
 [[ _custom_zsh_config_loaded == 1 ]] && return
 _custom_zsh_config_loaded=1
 
-# Create cache folder for compdump etc.
+# Create cache folder
 ZSH_CACHE="/tmp/.zsh-${USER}-${ZSH_VERSION}"
 mkdir -p $ZSH_CACHE
 chmod 700 $ZSH_CACHE
 
-# Make sure the terminal is in application mode, when zle is active.
-# (This is expected behavior for line editors. E.g. only then the values from $terminfo are valid.)
+# Make sure the terminal is in application mode, when zle is active
 if (( ${+terminfo[smkx]} )) && (( ${+terminfo[rmkx]} )); then
     function zle-line-init () {
         echoti smkx
@@ -33,4 +32,3 @@ done
 
 # Diable beep
 unsetopt  BEEP
-
