@@ -149,7 +149,7 @@
   `pacman -S --asdeps pulseaudio-alsa`
 
 * Install fonts
-  `pacman -S ttf-dejavu ttf-inconsolata adobe-source-{code,sans,serif}-pro-fonts`
+  `pacman -S ttf-dejavu adobe-source-{code,sans,serif}-pro-fonts`
 
 * Install additional file systems
   `pacman -S ntfs-3g exfat-utils`
