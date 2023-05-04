@@ -6,21 +6,21 @@ Deploy all files according to the instructions below.
 
 # copy
 
-sudo cp ~/.dotfiles/configs/pacman/mirrorlist /etc/pacman.d/mirrorlist
+sudo cp ~/dotfiles/configs/pacman/mirrorlist /etc/pacman.d/mirrorlist
 
 ----------------------------------------------------------------------
 
 # symlink
 
-ln -s ~/.dotfiles/configs/zsh/.zshrc ~/.zshrc
-ln -s ~/.dotfiles/configs/X/.Xdefaults ~/.Xdefaults
-ln -s ~/.dotfiles/configs/sway/config ~/.config/sway/config
-ln -s ~/.dotfiles/configs/i3status/config ~/.config/i3status/config
-ln -s ~/.dotfiles/configs/kitty/kitty.conf ~/.config/kitty/kitty.conf
-ln -s ~/.dotfiles/configs/tig/config ~/.config/tig/config
+ln -s ~/dotfiles/configs/zsh/.zshrc ~/.zshrc
+ln -s ~/dotfiles/configs/X/.Xdefaults ~/.Xdefaults
+ln -s ~/dotfiles/configs/sway/config ~/.config/sway/config
+ln -s ~/dotfiles/configs/i3status/config ~/.config/i3status/config
+ln -s ~/dotfiles/configs/kitty/kitty.conf ~/.config/kitty/kitty.conf
+ln -s ~/dotfiles/configs/tig/config ~/.config/tig/config
 
 ----------------------------------------------------------------------
 
 # include
 
-printf "[include]\n\tpath = ~/.dotfiles/configs/git/gitconfig\n" >> ~/.gitconfig
+printf "[include]\n\tpath = ~/dotfiles/configs/git/gitconfig\n" >> ~/.gitconfig
