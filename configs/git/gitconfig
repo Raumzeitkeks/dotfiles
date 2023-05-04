@@ -1,0 +1,52 @@
+# git configuration
+# by Calvin Ruocco (Raumzeitkeks) <calvin@ruoc.co>
+#
+# Read `man git-config` for a complete reference.
+
+[alias]
+  sync = "!git fetch origin $1:$1"
+
+[user]
+  useConfigOnly = true
+
+[status]
+  short = true
+  branch = true
+  showStash = true
+
+[log]
+  date = iso
+
+[blame]
+  date = iso
+
+[fetch]
+  prune = true
+  pruneTags = false
+  parallel = 0  # enabled
+
+[pull]
+  ff = only
+
+[push]
+  default = current
+  recurseSubmodules = check
+
+[rebase]
+  autosquash = true
+  missingCommitsCheck = error
+  abbreviateCommands = true
+
+[merge]
+  conflictstyle = diff3
+  tool = meld
+[mergetool]
+  keepBackup = false
+[mergetool "meld"]
+  hasOutput = true
+  useAutoMerge = true
+
+[gui]
+  spellingDictionary = none
+  fontui = -family \"Source Sans Pro\" -size 10 -weight normal -slant roman -underline 0 -overstrike 0
+  fontdiff = -family \"Source Code Pro\" -size 10 -weight normal -slant roman -underline 0 -overstrike 0

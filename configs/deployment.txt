@@ -23,4 +23,4 @@ ln -s ~/.dotfiles/configs/tig/config ~/.config/tig/config
 
 # include
 
-printf "[include]\n\tpath = ~/.dotfiles/configs/git/aliases.gitconfig\n" >> ~/.gitconfig
+printf "[include]\n\tpath = ~/.dotfiles/configs/git/gitconfig\n" >> ~/.gitconfig
