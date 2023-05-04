@@ -1,18 +1,20 @@
 # cd
 alias ..='cd ..'
 alias ...='cd ../..'
+alias ....='cd ../../..'
+alias .....='cd ../../../..'
+alias ......='cd ../../../../..'
+alias .......='cd ../../../../../..'
+alias ........='cd ../../../../../../..'
+alias .........='cd ../../../../../../../..'
+alias ..........='cd ../../../../../../../../..'
 
 # ls
-LS_OPTS="--color=auto"
-alias ls="ls $LS_OPTS"
-alias ll="ls -l $LS_OPTS"
-alias la="ls -la $LS_OPTS"
-unset LS_OPTS
+alias ls="ls --color=auto"
+alias ll="ls -ahlF --group-directories-first --color=auto"
 
 # less
-LESS_OPTS="-i"
-alias less="less $LESS_OPTS"
-unset LESS_OPTS
+alias less="less -i"
 
 # grep
 GREP_OPTS='--color=auto --exclude-dir={.git,.hg,.svn}'
@@ -22,7 +24,5 @@ alias fgrep="fgrep $GREP_OPTS"
 unset GREP_OPTS
 
 # git
-alias gi="git status"
-alias gg="git gui &"
-alias gk="gitk &"
-
+alias gg="nohup git gui >/dev/null 2>&1 &"
+alias gk="nohup gitk >/dev/null 2>&1 &"
