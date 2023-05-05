@@ -25,4 +25,4 @@ unset GREP_OPTS
 
 # git
 alias gg="nohup git gui >/dev/null 2>&1 &"
-alias gk="nohup gitk >/dev/null 2>&1 &"
+alias gk="nohup gitk --all >/dev/null 2>&1 &"
